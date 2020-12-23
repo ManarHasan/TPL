@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Registration Page</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/signup_login_style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script>
+        jQuery.fn.swap = function(){
+
+        }
+        $(document).ready(function(){
+            $('img').hover(function(){
+                var temp = $(this).attr('src');
+                $(this).attr('src', $(this).attr('alt-src'));
+                $(this).attr('alt-src', temp);
+            });
+            $('#slide').click(function () {
+            $('#container').slideDown('slow', function () {
+                $('#tbname').focus();
+            });
+        });
+    });
+    </script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="head">
+            <img src="{% static 'images/logo.png' %}" width="200px">
+            <h1 class="display-4" >TPL</h1>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#">My profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Teacher</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Subjects</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Support</a>
+            </li>
+            </ul>
+        </nav>
+    
+	<div class="wrapper">
+        <div class="left">
+            <h4 class="left display-5">About our Website</h4>
+            <p class="about">
+                Bacon ipsum dolor amet venison frankfurter ham hamburger. Tongue kevin chislic pork chuck, alcatra sausage shank t-bone tail boudin kielbasa shoulder. Shank turducken t-bone, pig pork loin shankle tenderloin swine ball tip. Short loin tongue flank, chuck shoulder capicola prosciutto pancetta shankle landjaeger cupim ball tip pork chop. Beef sirloin porchetta prosciutto. Alcatra beef ribs andouille, venison t-bone ham spare ribs pork loin porchetta short loin capicola picanha boudin.
+            </p>
+            <div class="pics">
+            <div class='row'>
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="{% static 'images/teacher.jpg' %}" alt-src="{% static 'images/logo.png' %}">
+                    <div class="card-body">
+                    <p class="card-text"> 200+ Coding Teachers</p>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="{% static 'images/teacher.jpg' %}" alt-src="{% static 'images/logo.png' %}">
+                    <div class="card-body">
+                    <p class="card-text">3000+ English Teachers</p>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="{% static 'images/teacher.jpg' %}" alt-src="{% static 'images/logo.png' %}">
+                    <div class="card-body">
+                    <p class="card-text">3000+ Math Teachers.</p>
+                    </div>
+                </div>
+                </div>
+                <div class='row'>
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="{% static 'images/teacher.jpg' %}" alt-src="{% static 'images/logo.png' %}">
+                        <div class="card-body">
+                        <p class="card-text">3000+ Arabic Teachers</p>
+                        </div>
+                    </div>
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="{% static 'images/teacher.jpg' %}" alt-src="{% static 'images/logo.png' %}">
+                        <div class="card-body">
+                        <p class="card-text">2500+ PT Teachers</p>
+                        </div>
+                    </div>
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="{% static 'images/teacher.jpg' %}" alt-src="{% static 'images/logo.png' %}">
+                        <div class="card-body">
+                        <p class="card-text">3000+ History Teachers</p>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+        <div class="right">
+            <form class="form-signin" method="post" style= "width: 450px;">       
+                <h2 class="form-signin-heading">Register</h2><br>
+                <input type="button" class="btn-check" name="options" id="slide" autocomplete="off">
+                    <label class="btn btn-secondary" for="slide">Parents</label>
+                <input type="button" class="btn-check" name="options" id="slide" autocomplete="off">
+                    <label class="btn btn-secondary" for="slide">Teacher</label><br><br>
+                <input type="text" class="form-control" name="firstname" placeholder="First Name" required="" autofocus="" /><br>
+                <input type="lastname" class="form-control" name="lastname" placeholder="Last Name" required=""/><br>
+                <input type="text" class="form-control" name="username" placeholder="Email Address" required="" autofocus="" /><br>
+                <input type="occupation" class="form-control" name="occupation" placeholder="Occupation" required=""/><br>
+                <input type="password" class="form-control" name="password" placeholder="Password" required=""/><br>
+                <input type="copassword" class="form-control" name="copassword" placeholder="Co-Password" required=""/><br>
+                <div id="container" style="display:none; width:308px; font:15px Verdana; border:solid 1px #CCC; padding:10px;">
+            <div>
+                <div>
+                    <label>Name: </label>
+                    <div><input id="tbname" name="yourname" /></div>
+                </div>
+                <div>
+                    <label>Email Address:</label>
+                    <div><input id="tbEmail" name="email" /></div></div>
+            </div>
+        </div>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>   
+            </form>
+            <br>
+            <form class="form-signin" style= "width: 450px;">       
+                <h2 class="form-signin-heading"> login</h2><br>
+                <input type="text" class="form-control" name="username" placeholder="Email Address" required="" autofocus="" /><br>
+                <input type="password" class="form-control" name="password" placeholder="Password" required=""/><br>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>   
+            </form>
+        </div>
+    </div>
+</body>
+</html>

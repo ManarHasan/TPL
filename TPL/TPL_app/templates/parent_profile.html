@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Registration Page</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/parent_profile_style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="head">
+            <img src="{% static 'images/logo.png' %}" width="100px">
+            <div class="empty"></div>
+            <h1 class="display-3" >TPL</h1>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#">My profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Teacher</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Subjects</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Support</a>
+            </li>
+            </ul>
+        </nav>
+        <img class ="profile-pic" src="{% static 'images/profile_pic.png' %}" width="200px">
+        <h2 class="display-4">My Kids</h2>
+        <aside>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+            <a class="nav-link active" href="#">Active</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link active" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link active" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link active" href="#">Disabled</a>
+            </li>
+        </ul>
+    </aside>
+    <main>
+        <table class="table">
+            <thead>
+                <tr class="table-info">
+                    <th>Student</th>
+                    <th>Teacher</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Ahmad Bakeer</td>
+                    <td>Mr. Mohammad Donbok</td>
+                    <td>12/12/2020</td>
+                    <td>12:30</td>
+                    <td>Online</td>
+                </tr>
+                <tr class="table-info">
+                    <td>Ahmad Bakeer</td>
+                    <td>Mr. Mohammad Donbok</td>
+                    <td>12/12/2020</td>
+                    <td>12:30</td>
+                    <td>Online</td>
+                </tr>
+                <tr>
+                    <td>Ahmad Bakeer</td>
+                    <td>Mr. Mohammad Donbok</td>
+                    <td>12/12/2020</td>
+                    <td>12:30</td>
+                    <td>Online</td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+    <footer class="card-header">2020</footer>
+</body>
+</html>

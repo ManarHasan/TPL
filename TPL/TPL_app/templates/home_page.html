@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/home_page_style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="head">
+            <img src="{% static 'images/logo.png' %}" width="200px">
+            <div class="empty"></div>
+            <h1 class="display-3" >TPL</h1>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#">My profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Teacher</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Subjects</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Support</a>
+            </li>
+            </ul>
+        </nav>
+        <main>
+        <form method="post">
+            <select class="form-select" name="teachers" id="teachers">
+                <option value="#">Mr. Mohammad Donbok</option>
+                <option value="#">Mr. Kamal Nouri</option>
+                <option value="#">Mr. Mahmoud Waked</option>
+                <option value="#">Mr. Samer Imresh</option>
+                <option value="#">Mr. Abdelsalam 2amhiyyeh</option>
+            </select>
+            <select class="form-select" name="subjects" id="subjects">
+                <option value="#">Arabic</option>
+                <option value="#">English</option>
+                <option value="#">Math</option>
+                <option value="#">Biology</option>
+                <option value="#">Chemistry</option>
+            </select>
+        </form>
+        </main>
+        <div>
+            <h2>Result:</h2>
+            <p>Bacon ipsum dolor amet venison frankfurter ham hamburger. Tongue kevin chislic pork chuck, alcatra sausage shank t-bone tail boudin kielbasa shoulder. Shank turducken t-bone, pig pork loin shankle tenderloin swine ball tip. Short loin tongue flank, chuck shoulder capicola prosciutto pancetta shankle landjaeger cupim ball tip pork chop. Beef sirloin porchetta prosciutto. Alcatra beef ribs andouille, venison t-bone ham spare ribs pork loin porchetta short loin capicola picanha boudin.</p>
+        </div>
+        <div>
+            <h2>Result:</h2>
+            <p>Bacon ipsum dolor amet venison frankfurter ham hamburger. Tongue kevin chislic pork chuck, alcatra sausage shank t-bone tail boudin kielbasa shoulder. Shank turducken t-bone, pig pork loin shankle tenderloin swine ball tip. Short loin tongue flank, chuck shoulder capicola prosciutto pancetta shankle landjaeger cupim ball tip pork chop. Beef sirloin porchetta prosciutto. Alcatra beef ribs andouille, venison t-bone ham spare ribs pork loin porchetta short loin capicola picanha boudin.</p>
+        </div>
+        <div>
+            <h2>Result:</h2>
+            <p>Bacon ipsum dolor amet venison frankfurter ham hamburger. Tongue kevin chislic pork chuck, alcatra sausage shank t-bone tail boudin kielbasa shoulder. Shank turducken t-bone, pig pork loin shankle tenderloin swine ball tip. Short loin tongue flank, chuck shoulder capicola prosciutto pancetta shankle landjaeger cupim ball tip pork chop. Beef sirloin porchetta prosciutto. Alcatra beef ribs andouille, venison t-bone ham spare ribs pork loin porchetta short loin capicola picanha boudin.</p>
+        </div>
+        <div>
+            <h2>Result:</h2>
+            <p>Bacon ipsum dolor amet venison frankfurter ham hamburger. Tongue kevin chislic pork chuck, alcatra sausage shank t-bone tail boudin kielbasa shoulder. Shank turducken t-bone, pig pork loin shankle tenderloin swine ball tip. Short loin tongue flank, chuck shoulder capicola prosciutto pancetta shankle landjaeger cupim ball tip pork chop. Beef sirloin porchetta prosciutto. Alcatra beef ribs andouille, venison t-bone ham spare ribs pork loin porchetta short loin capicola picanha boudin.</p>
+        </div>
+</body>
+</html>
