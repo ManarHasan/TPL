@@ -32,9 +32,6 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'TPL_app',
-    'parent_app',
-    'lesson_app',
-    'child_app',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
