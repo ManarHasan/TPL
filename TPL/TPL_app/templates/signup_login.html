@@ -9,20 +9,30 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
     <script>
-        jQuery.fn.swap = function(){
-
-        }
         $(document).ready(function(){
             $('img').hover(function(){
                 var temp = $(this).attr('src');
                 $(this).attr('src', $(this).attr('alt-src'));
                 $(this).attr('alt-src', temp);
             });
-            $('#slide').click(function () {
-            $('#container').slideDown('slow', function () {
-                $('#tbname').focus();
+            $('#parent-slide').click(function () {
+                $('#container-2').slideUp(function () {
+                    $('#teacher-education').focus();
+                })});
+            $('#parent-slide').click(function () {
+                $('#container-1').slideDown(function () {
+                    $('#tbnumber').focus();
+                });
             });
-        });
+            $('#teacher-slide').click(function () {
+                $('#container-1').slideUp(function () {
+                    $('#tbnumber').focus();
+                })});
+            $('#teacher-slide').click(function () {
+                $('#container-2').slideDown(function () {
+                    $('#teacher-education').focus();
+                });
+            });
     });
     </script>
 </head>
@@ -102,39 +112,76 @@
         </div>
     </div>
         <div class="right">
-            <form class="form-signin" method="post" style= "width: 450px;">       
+            <form action="/register" class="form-signin" method="post" style= "width: 450px;">
+                {% csrf_token %}   
                 <h2 class="form-signin-heading">Register</h2><br>
-                <input type="button" class="btn-check" name="options" id="slide" autocomplete="off">
-                    <label class="btn btn-secondary" for="slide">Parents</label>
-                <input type="button" class="btn-check" name="options" id="slide" autocomplete="off">
-                    <label class="btn btn-secondary" for="slide">Teacher</label><br><br>
-                <input type="text" class="form-control" name="firstname" placeholder="First Name" required="" autofocus="" /><br>
-                <input type="lastname" class="form-control" name="lastname" placeholder="Last Name" required=""/><br>
-                <input type="text" class="form-control" name="username" placeholder="Email Address" required="" autofocus="" /><br>
-                <input type="occupation" class="form-control" name="occupation" placeholder="Occupation" required=""/><br>
-                <input type="password" class="form-control" name="password" placeholder="Password" required=""/><br>
-                <input type="copassword" class="form-control" name="copassword" placeholder="Co-Password" required=""/><br>
-                <div id="container" style="display:none; width:308px; font:15px Verdana; border:solid 1px #CCC; padding:10px;">
+                <input type="radio" class="btn-check" name="option" id="parent-slide" value="parent">
+                    <label class="btn btn-secondary" for="parent-slide">Parent</label>
+                <input type="radio" class="btn-check" name="option" id="teacher-slide" value="teacher">
+                    <label class="btn btn-secondary" for="teacher-slide">Teacher</label><br><br>
+                <input type="text" class="form-control" name="fname" placeholder="First Name" required><br>
+                <input type="lastname" class="form-control" name="lname" placeholder="Last Name" required><br>
+                <input type="text" class="form-control" name="email" placeholder="Email Address" required><br>
+                <input type="occupation" class="form-control" name="occupation" placeholder="Occupation" required><br>
+                <input type="password" class="form-control" name="password" placeholder="Password" required><br>
+                <input type="password" class="form-control" name="confirm" placeholder="Confirm Password" required><br>
+                <div id="container-1" style="display:none; width:308px; font:15px Verdana; border:solid 1px #CCC; padding:10px;">
+                    <label>Number of children:</label>
+                    <input type="number" class="form-control" id="tbnumber" name="number_of_children">
+                    <label>Child Name: </label>
+                    <input type="text" class="form-control" id="tbname" name="child_name">
+                    <label>Age:</label>
+                    <input type="number" class="form-control" id="tbEmail" name="age">
+                    <label>Gender:</label>
+                    <select class="form-control" name="gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    </select>
+                    <label>grade:</label>
+                    <input type="number" class="form-control" name="grade">
+        </div>
+        <div id="container-2" style="display:none; width:308px; font:15px Verdana; border:solid 1px #CCC; padding:10px;">
             <div>
                 <div>
-                    <label>Name: </label>
-                    <div><input id="tbname" name="yourname" /></div>
+                    <label>Education: </label>
+                    <div><select class="form-control" name="education" id="teacher-education">
+                        <option value="1">High School</option>
+                        <option value="1">Bacherlor's</option>
+                        <option value="1">Master's</option>
+                        </select></div>
                 </div>
                 <div>
-                    <label>Email Address:</label>
-                    <div><input id="tbEmail" name="email" /></div></div>
+                    <label>Specialization:</label>
+                    <div><select class="form-control" name="specialization" id="teacher-specialization">
+                        <option value="1">Arabic</option>
+                        <option value="1">English</option>
+                        <option value="1">Math</option>
+                        </select></div></div>
             </div>
         </div>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>   
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>   
             </form>
             <br>
-            <form class="form-signin" style= "width: 450px;">       
+            <form action="/login" method="post" class="form-signin" style= "width: 450px;">
+                {% csrf_token %}
+                <input type="radio" class="btn-check" id="login_parent" name="options" value="parent">
+                    <label class="btn btn-secondary" for="login_parent">Parent</label>
+                <input type="radio" class="btn-check" id="login_teacher" name="options" value="teacher">
+                    <label class="btn btn-secondary" for="login_teacher">Teacher</label><br><br>    
                 <h2 class="form-signin-heading"> login</h2><br>
-                <input type="text" class="form-control" name="username" placeholder="Email Address" required="" autofocus="" /><br>
-                <input type="password" class="form-control" name="password" placeholder="Password" required=""/><br>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>   
+                <input type="text" class="form-control" name="email" placeholder="Email Address" required><br>
+                <input type="password" class="form-control" name="password" placeholder="Password" required><br>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
             </form>
         </div>
     </div>
+    <a href="/logout">Logout</a>
+    {% if messages %}
+<ul class="messages">    
+    {% for message in messages %}    
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+    {% endfor %}
+</ul>
+{% endif %}
 </body>
 </html>

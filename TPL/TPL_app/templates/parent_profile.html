@@ -58,36 +58,27 @@
                 <tr class="table-info">
                     <th>Student</th>
                     <th>Teacher</th>
-                    <th>Date</th>
-                    <th>Time</th>
+                    <th>Lesson Title</th>
+                    <th>Date/Time</th>
                     <th>Type</th>
                 </tr>
             </thead>
             <tbody>
+                {% for child in all_lessons %}
+                {% for lesson in child %}
                 <tr>
-                    <td>Ahmad Bakeer</td>
-                    <td>Mr. Mohammad Donbok</td>
-                    <td>12/12/2020</td>
-                    <td>12:30</td>
-                    <td>Online</td>
+                    <td>{{lesson.child.first_name}} {{lesson.child.last_name}}</td>
+                    <td>{{lesson.teacher.first_name}} {{lesson.teacher.last_name}}</td>
+                    <td>{{lesson.title}}</td>
+                    <td>{{lesson.time}}</td>
+                    <td>{{lesson.style}}</td>
                 </tr>
-                <tr class="table-info">
-                    <td>Ahmad Bakeer</td>
-                    <td>Mr. Mohammad Donbok</td>
-                    <td>12/12/2020</td>
-                    <td>12:30</td>
-                    <td>Online</td>
-                </tr>
-                <tr>
-                    <td>Ahmad Bakeer</td>
-                    <td>Mr. Mohammad Donbok</td>
-                    <td>12/12/2020</td>
-                    <td>12:30</td>
-                    <td>Online</td>
-                </tr>
+                {% endfor %}
+                {% endfor %}
             </tbody>
         </table>
     </main>
     <footer class="card-header">2020</footer>
+    <a href="/logout">Logout</a>
 </body>
 </html>
