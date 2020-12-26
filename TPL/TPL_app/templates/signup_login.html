@@ -142,7 +142,7 @@
         </div>
     </div>
         <div class="right">
-            <form action="/register" class="form-signin" method="post" style= "width: 450px;">
+            <form action="/register" enctype="multipart/form-data" class="form-signin" method="post" style= "width: 450px;">
                 {% csrf_token %}   
                 <h2 class="form-signin-heading">Register</h2><br>
                 <input type="radio" class="btn-check" name="option" id="parent-slide" value="parent">
@@ -155,6 +155,7 @@
                 <input type="occupation" class="form-control" name="occupation" placeholder="Occupation" required><br>
                 <input type="password" class="form-control" name="password" placeholder="Password" required><br>
                 <input type="password" class="form-control" name="confirm" placeholder="Confirm Password" required><br>
+                <input type="file" class="form-control" name="pic">
                 <div id="container-1" style="display:none; width:308px; font:15px Verdana; border:solid 1px #CCC; padding:10px;">
                     <label>Number of children:</label>
                     <input type="number" class="form-control" id="tbnumber" name="number_of_children">
@@ -212,9 +213,9 @@
             <br>
             <form action="/login" method="post" class="form-signin" style= "width: 450px;">
                 {% csrf_token %}
-                <input type="radio" class="btn-check" id="login_parent" name="options" value="parent">
+                <input type="radio" class="btn-check" id="login_parent" name="options" value="parent" required>
                     <label class="btn btn-secondary" for="login_parent">Parent</label>
-                <input type="radio" class="btn-check" id="login_teacher" name="options" value="teacher">
+                <input type="radio" class="btn-check" id="login_teacher" name="options" value="teacher" required>
                     <label class="btn btn-secondary" for="login_teacher">Teacher</label><br><br>    
                 <h2 class="form-signin-heading"> login</h2><br>
                 <input type="text" class="form-control" name="email" placeholder="Email Address" required><br>

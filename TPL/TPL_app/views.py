@@ -24,7 +24,7 @@ def register(request):
             for key, value in errors.items():
                 messages.error(request, value)
                 return redirect('/')
-        user = models.add_parent(request.POST, pw_hash)
+        user = models.add_parent(request.POST, request.FILES, pw_hash)
         models.add_child(request.POST, user.id)
         if 'user_id' not in request.session:
             request.session['type'] = "parent"
@@ -42,7 +42,7 @@ def register(request):
             for key, value in errors.items():
                 messages.error(request, value)
                 return redirect('/')
-        user = models.add_teacher(request.POST, pw_hash)
+        user = models.add_teacher(request.POST, request.FILES, pw_hash)
         if 'user_id' not in request.session:
             request.session['type'] = "teacher"
             request.session['user_id'] = user.id

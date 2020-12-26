@@ -15,6 +15,7 @@ class Teacher(models.Model):
     education = models.CharField(max_length=255)
     email = models.CharField(max_length=255, null=True)
     password = models.CharField(max_length=255, null=True)
+    profile_pic = models.ImageField(upload_to=f'TPL_app/static/images/', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -25,6 +26,7 @@ class Parent(models.Model):
     occupation = models.CharField(max_length=255, blank=True)
     email = models.CharField(max_length=255, null=True)
     password = models.CharField(max_length=255, null=True)
+    profile_pic = models.ImageField(upload_to='TPL_app/static/images/', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -58,9 +60,9 @@ class Lesson(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 
-def add_parent(postData, pw_hash):
+def add_parent(postData, postFiles, pw_hash):
     user = Parent.objects.create(
-        first_name=postData['fname'], last_name=postData['lname'], occupation=postData['occupation'], email=postData['email'], password=pw_hash)
+        first_name=postData['fname'], last_name=postData['lname'], occupation=postData['occupation'], email=postData['email'], password=pw_hash, profile_pic=postFiles['pic'])
     return user
 
 
@@ -71,9 +73,9 @@ def add_child(postData, user_id):
     return child
 
 
-def add_teacher(postData, pw_hash):
+def add_teacher(postData, postFiles, pw_hash):
     user = Teacher.objects.create(
-        first_name=postData['fname'], last_name=postData['lname'], occupation=postData['occupation'], email=postData['email'], password=pw_hash, specialization=postData['specialization'], education=postData['education'])
+        first_name=postData['fname'], last_name=postData['lname'], occupation=postData['occupation'], email=postData['email'], password=pw_hash, specialization=postData['specialization'], education=postData['education'], profile_pic=postFiles['pic'])
     return user
 
 

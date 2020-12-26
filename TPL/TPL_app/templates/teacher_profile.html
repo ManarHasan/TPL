@@ -22,15 +22,16 @@
                     <a class="nav-link active" href="/home">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="teacher-profile/{{request.session.user_id}}">My profile</a>
+                    {% if request.session.type == "teacher" %}<a class="nav-link active" href="teacher-profile/{{request.session.user_id}}">My profile</a>{% endif %}
+                    {% if request.session.type == "parent" %}<a class="nav-link active" href="parent-profile/{{request.session.user_id}}">My profile</a>{% endif %}
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="/logout">logout</a>
+                    <a class="nav-link active" href="/logout">Logout</a>
                 </li>
                 
                 </ul>
         </nav>
-        <img class ="profile-pic" src="{% static 'images/profile_pic.png' %}" width="200px">
+        <img class ="profile-pic" src="{{parent.profile_pic.url}}" width="200px">
         <h2 class="display-4">My lessons</h2>
         <aside>
         <ul class="nav flex-column">
@@ -136,7 +137,7 @@
         </thead>
         <tbody>
             <tr>
-                <td><a href="#">Sunday</a></td>
+                <td>Sunday</td>
                 <td>{% for lesson in all_teacher_lessons %}
                     {% if lesson.day == "sunday" %}{% if lesson.time == "8" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
                     {% endfor %}</td>
@@ -157,7 +158,7 @@
                     {% endfor %}</td>
             </tr>
             <tr>
-                <td><a href="#">Monday</a></td>
+                <td>Monday</td>
                 <td>{% for lesson in all_teacher_lessons %}
                     {% if lesson.day == "monday" %}{% if lesson.time == "8" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
                     {% endfor %}</td>
@@ -178,7 +179,7 @@
                     {% endfor %}</td>
             </tr>
             <tr>
-                <td><a href="#">Tuesday</a></td>
+                <td>Tuesday</td>
                 <td>{% for lesson in all_teacher_lessons %}
                     {% if lesson.day == "tuesday" %}{% if lesson.time == "8" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
                     {% endfor %}</td>
@@ -200,7 +201,7 @@
             </tr>
 
             <tr>
-                <td><a href="#">Wednesday</a></td>
+                <td>Wednesday</td>
                 <td>{% for lesson in all_teacher_lessons %}
                     {% if lesson.day == "wednesday" %}{% if lesson.time == "8" %}<a href="delete_lesson">{{lesson.title}}</a href="delete_lesson">{% endif %}{% endif %}
                     {% endfor %}</td>
@@ -221,7 +222,7 @@
                     {% endfor %}</td>
             </tr>
             <tr>
-                <td><a href="#">Thursday</a></td>
+                <td>Thursday</td>
                 <td>{% for lesson in all_teacher_lessons %}
                     {% if lesson.day == "thursday" %}{% if lesson.time == "8" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
                     {% endfor %}</td>
@@ -242,7 +243,7 @@
                     {% endfor %}</td>
             </tr>
             <tr>
-                <td><a href="#">Friday</a></td>
+                <td>Friday</td>
                 <td>{% for lesson in all_teacher_lessons %}
                     {% if lesson.day == "friday" %}{% if lesson.time == "8" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
                     {% endfor %}</td>
@@ -263,7 +264,7 @@
                     {% endfor %}</td>
             </tr>
             <tr>
-                <td><a href="#">Saturday</a></td>
+                <td>Saturday</td>
                 <td>{% for lesson in all_teacher_lessons %}
                     {% if lesson.day == "saturday" %}{% if lesson.time == "8" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
                     {% endfor %}</td>
