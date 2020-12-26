@@ -93,11 +93,11 @@ def parent_profile(request, id):
     all_lessons = []
     for child in children:
         all_lessons.append(Lesson.objects.filter(child=child.id))
+
     context = {
-        "child": child,
         "parent": parent,
         "children": children,
-        "all_lessons": all_lessons
+        "all_lessons": all_lessons,
     }
     return render(request, "parent_profile.html", context)
 
@@ -152,14 +152,9 @@ def add_child_form(request, d, n, tid):
 def signup_to_lesson(request, id, d, n, tid):
     child = Child.objects.get(id=request.POST['child'])
     teacher = Teacher.objects.get(id=tid)
-    available= models.child_is_available(day=d, time=n, child=child)
-    if available:
-        lesson = Lesson.objects.get(teacher=teacher, day=d, time=n)
-        lesson.child = child
-        lesson.save()
-    else:
-        messages.error(request,"you are not available at this time!")
-        return redirect('/teacher-profile/add-to-lesson/'+str(d)+"/"+str(n)+"/"+str(tid))
+    lesson = Lesson.objects.get(teacher=teacher, day=d, time=n)
+    lesson.child = child
+    lesson.save()
     return redirect('/teacher-profile/'+str(tid))
 
 def home(request):
@@ -188,11 +183,3 @@ def home(request):
         return JsonResponse(data=data_dict, safe=False)
 
     return render(request, "home_page.html", context)
-
-def all_lessons(request):
-    Lesson.objects.all()
-    context = {
-        'all_lessons': Lesson.objects.all()
-    }
-    return render(request, 'lessons.html', context)
-

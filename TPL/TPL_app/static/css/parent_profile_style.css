@@ -11,14 +11,18 @@ h1 {
   display: inline-block;
   margin-left: 15px;
 }
+h2 {
+  color: white;
+}
 ul {
   display: inline-block;
   margin-left: 500px !important;
 }
 .navbar-nav .nav-link {
-  width: 100px !important;
-  margin-left: 10px !important;
-  font-size: large;
+  width: 180px !important;
+  margin-left: 5px !important;
+  font-size: x-large;
+
 }
 .profile-pic {
   border-radius: 100px;
@@ -34,6 +38,10 @@ aside {
   margin: 20px 0 0 40px !important;
   width: 150px;
   float: left;
+}
+.table tr td {
+  border: 1px solid rgb(255, 255, 255);
+  color: white !important;
 }
 .flex-column {
   border: 1px outset white;
@@ -59,4 +67,27 @@ main {
   justify-content: center;
   align-items: center;
   margin-top: 200px;
+}
+
+body {
+  background-color:#152036 !important;
+}
+
+a {
+  color: rgb(245 164 37) !important;
+}
+
+
+
+.btnn {
+  color: #fff;
+  background-color: rgb(245 164 37) !important;
+  border-color: rgb(245 164 37) !important;
+  
+}
+
+.footer1{
+  
+  color: white;
+  
 }

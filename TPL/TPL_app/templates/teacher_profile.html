@@ -11,24 +11,28 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="head">
-            <img src="{% static 'images/logo.png' %}" width="100px">
+            <img src="{% static 'images/logo1.png' %}" width="100px">
             <div class="empty"></div>
             <h1 class="display-3" >TPL</h1>
         </div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-                <li class="nav-item">
-                    <a class="nav-link active" href="/home">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="teacher-profile/{{request.session.user_id}}">My profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="/logout">logout</a>
-                </li>
-                
-                </ul>
+                <a class="nav-link active" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#">My profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Teacher</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Subjects</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Support</a>
+            </li>
+            </ul>
         </nav>
         <img class ="profile-pic" src="{% static 'images/profile_pic.png' %}" width="200px">
         <h2 class="display-4">My lessons</h2>
@@ -47,26 +51,6 @@
             <a class="nav-link active" href="#">Disabled</a>
             </li>
         </ul>
-        <info>
-            <h3>Teacher Information</h3>
-            <table class='table'>
-                <thead>
-                    <tr class='table-info'>
-                        <th>Name</th>
-                        <th>Specilization</th>
-                        <th>Education</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <td>{{teacher.first_name}}</td>
-                    <td>{{teacher.Specilization}}</td>
-                    <td>{{teacher.education}}</td>
-                    </tr>
-                    </tbody>
-                </thead>
-            </table>
-
-        </info>
     </aside>
         {% if request.session.type == "teacher" %}
         <main>
@@ -494,7 +478,9 @@
 {% endfor %}
 </ul>
 {% endif %}
-<footer class="card-header">2020</footer>
+<div class="footer1">
+    <footer class="card-header">Teacher lesson Privite - 2020</footer>
+</div>
 {% endif %}
 
 </body>

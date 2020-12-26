@@ -18,13 +18,44 @@ ul {
   width: 500px !important;
 }
 .navbar-nav .nav-link {
-  width: 100px !important;
-  margin-left: 10px !important;
-  font-size: large;
+  width: 180px !important;
+  margin-left: 5px !important;
+  font-size: x-large;
 }
 table th {
   border: 1px solid black;
 }
 table tr td {
   border: 1px solid black;
+}
+
+
+body {
+  background-color:#152036 !important;
+}
+
+a {
+  color: rgb(245 164 37) !important;
+}
+
+
+
+.btnn {
+  color: #fff;
+  background-color: rgb(245 164 37) !important;
+  border-color: rgb(245 164 37) !important;
+  
+}
+
+.footer1{
+  
+  color: white;
+  
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: rgb(245 164 37) !important;
+  border-color: rgb(245 164 37) !important;
+  
 }

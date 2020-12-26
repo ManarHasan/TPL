@@ -4,12 +4,21 @@
   width: 400px;
   align-items: center;
 }
+
+
+body
+{
+    
+    background-color: #152036 !important;
+}
+
 .head img {
   display: inline-block;
 }
 h1 {
   display: inline-block;
   margin-left: 15px;
+  
 }
 
 ul {
@@ -17,22 +26,45 @@ ul {
   margin-left: 600px !important;
   width: 500px !important;
 }
-.navbar-nav .nav-link {
-  width: 100px !important;
-  margin-left: 10px !important;
-  font-size: large;
+
+.navbar-nav .nav-link   {
+  width: 180px !important;
+  margin-left: 5px !important;
+  font-size: x-large ;
+  
 }
+
+
+
 .card img {
   border-radius: 8px !important;
   margin-top: 5px !important;
 }
 .card {
   display: inline-block;
-  border: 1px solid black !important;
-  border-radius: 10px !important;
+  border: 0px solid black !important;
+  border-radius: 0px !important;
   margin: 10px;
-  background-image: linear-gradient(to right, #099136, #ef473a);
+  background-color: #152036 !important;
+  
 }
+
+/* 
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .25rem;
+} */
+
+
+
+
 .wrapper {
   margin-top: 80px;
   margin-bottom: 80px;
@@ -45,11 +77,13 @@ ul {
   max-width: 500px;
   padding: 15px 35px 45px;
   margin: 0 auto;
-  background-color: #fff;
+  background-color: rgb(66 75 92);
   border: 1px solid rgba(0, 0, 0, 0.1);
+  
 }
 h2 {
   text-align: center;
+  
 }
 .left {
   margin: 20px 0 0 40px;
@@ -68,4 +102,41 @@ h2 {
   margin: 20px;
   height: 280px;
   font-size: 20px;
+}
+
+p {
+  color: white !important;
+}
+
+h4 {
+  color: white;
+}
+
+h2{
+  color: white;
+}
+
+.form-control {
+  display: inline-block;
+  width: 100%;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  background-color: rgb(99 107 122)!important;
+  background-clip: padding-box;
+  border-radius: 0% !important;
+  color: white !important;
+  border: 0px solid rgb(132 138 149) !important;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: rgb(245 164 37) !important;
+  border-color: rgb(245 164 37) !important;
+  
+}
+
+a {
+  color: rgb(245 164 37) !important;
 }

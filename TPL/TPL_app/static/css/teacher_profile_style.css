@@ -11,14 +11,17 @@ h1 {
   display: inline-block;
   margin-left: 15px;
 }
+h2 {
+  color: white !important;
+}
 ul {
   display: inline-block;
   margin-left: 500px !important;
 }
 .navbar-nav .nav-link {
-  width: 100px !important;
+  width: 180px !important;
   margin-left: 10px !important;
-  font-size: large;
+  font-size: x-large;
 }
 .profile-pic {
   border-radius: 100px;
@@ -50,6 +53,7 @@ main {
   display: inline-block;
   width: 1100px;
   margin-left: 180px;
+  
 }
 .display-4 {
   margin: 10px 0 40px 380px;
@@ -60,15 +64,21 @@ main {
   align-items: center;
 }
 form {
-  margin: 80px 0 0 -150px !important;
+  margin: 258px 0 0 -150px !important;
   width: 200px;
+  height: 300px;
   float: left;
+  
 }
+
 .table tr td {
-  border: 1px solid black;
+  border: 1px solid rgb(255, 255, 255);
+  color: white !important;
 }
 .table thead th {
   border: 1px solid black;
+  
+
 }
 form input {
   margin-top: 10px;
@@ -86,3 +96,20 @@ form label {
   width: 1100px;
   margin: 80px 0 0 130px;
 }
+
+body {
+  background-color:#152036 !important;
+}
+
+a {
+  color: rgb(245 164 37) !important;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: rgb(245 164 37) !important;
+  border-color: rgb(245 164 37) !important;
+  
+}
+
+
