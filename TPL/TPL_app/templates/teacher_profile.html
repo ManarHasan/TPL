@@ -28,46 +28,43 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="/logout">Logout</a>
                 </li>
-                
                 </ul>
         </nav>
-        <img class ="profile-pic" src="{{parent.profile_pic.url}}" width="200px">
+        <img class ="profile-pic" src="{{teacher.profile_pic.url}}">
+        <p>Welcome {{teacher.first_name}} {{teacher.last_name}}!</p>
         <h2 class="display-4">My lessons</h2>
         <aside>
         <ul class="nav flex-column">
             <li class="nav-item">
-            <a class="nav-link active" href="#">Active</a>
+            <a class="nav-link active" href="#">My Favorite Students</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link active" href="#">Link</a>
+            <a class="nav-link active" href="#">Other Subjects</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link active" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link active" href="#">Disabled</a>
+            <a class="nav-link active" href="#">Account Settings</a>
             </li>
         </ul>
-        <info>
+        <div class="info">
             <h3>Teacher Information</h3>
             <table class='table'>
                 <thead>
                     <tr class='table-info'>
                         <th>Name</th>
-                        <th>Specilization</th>
+                        <th>Specialization</th>
                         <th>Education</th>
                     </tr>
                     </thead>
                     <tbody>
                     <td>{{teacher.first_name}}</td>
-                    <td>{{teacher.Specilization}}</td>
+                    <td>{{teacher.specialization}}</td>
                     <td>{{teacher.education}}</td>
                     </tr>
                     </tbody>
                 </thead>
             </table>
 
-        </info>
+        </div>
     </aside>
         {% if request.session.type == "teacher" %}
         <main>
@@ -94,6 +91,7 @@
                 </tbody>
             </table>
     </main>
+    <div class="add-lesson">
     <form action="/add_lesson/{{request.session.user_id}}" method="post">
         {% csrf_token %}
     <input type="text" name="title" class="form-control" placeholder="Title" required>
@@ -122,11 +120,12 @@
     </select>
     <input type="submit" class="btn-primary" value="Add Lesson">
     </form>
+    </div>
     <div class="schedule">
     <table class="table">
         <thead>
             <tr class="table-secondary">
-                <th></th>
+                <th>Day</th>
                 <th>8-9</th>
                 <th>9-10</th>
                 <th>10-11</th>
@@ -294,7 +293,6 @@
     {% endfor %}
     </ul>
     {% endif %}
-    <footer class="card-header">2020</footer>
 {% endif %}
 <main>
     {% if request.session.type == "parent" %}
@@ -326,7 +324,7 @@
 <table class="table">
     <thead>
         <tr class="table-secondary">
-            <th></th>
+            <th>Day</th>
             <th>8-9</th>
             <th>9-10</th>
             <th>10-11</th>
@@ -495,8 +493,10 @@
 {% endfor %}
 </ul>
 {% endif %}
-<footer class="card-header">2020</footer>
 {% endif %}
-
+</main>
+<div class="footer1">
+    <footer>Teacher lesson Privite - 2020</footer>
+</div>
 </body>
 </html>

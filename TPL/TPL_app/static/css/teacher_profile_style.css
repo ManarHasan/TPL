@@ -1,3 +1,13 @@
+p{
+  color: white;
+  margin-top: 10px !important;
+  margin-left: 380px;
+  margin-bottom: 0px !important;
+}
+h3{
+  color:white;
+  width:267px;
+}
 .head {
   display: inline-flex;
   margin: 10px 0 0 40px;
@@ -11,20 +21,29 @@ h1 {
   display: inline-block;
   margin-left: 15px;
 }
+h2 {
+  color: white !important;
+}
 ul {
   display: inline-block;
   margin-left: 500px !important;
 }
 .navbar-nav .nav-link {
-  width: 100px !important;
+  width: 180px !important;
   margin-left: 10px !important;
-  font-size: large;
+  font-size: x-large;
+  text-align: center;
+}
+th{
+  border: 1px solid white !important;
 }
 .profile-pic {
   border-radius: 100px;
   margin: -80px 150px;
   position: absolute !important;
   z-index: 1 !important;
+  width: 200px; 
+  height: 200px;
 }
 .empty {
   display: inline-block;
@@ -36,20 +55,25 @@ aside {
   float: left;
 }
 .flex-column {
-  border: 1px outset white;
+  border: 1px outset black;
   border-radius: 5px;
   padding-top: 10px;
-  width: 150px;
+  width: 170px;
   height: 200px;
   margin: 0 !important;
 }
 .flex-column li {
   margin-left: 10px;
 }
+.flex-column li a{
+  font-size: large;
+  font-weight: 400;
+}
 main {
   display: inline-block;
   width: 1100px;
   margin-left: 180px;
+  
 }
 .display-4 {
   margin: 10px 0 40px 380px;
@@ -60,15 +84,21 @@ main {
   align-items: center;
 }
 form {
-  margin: 80px 0 0 -150px !important;
+  margin: 258px 0 0 -150px !important;
   width: 200px;
+  height: 300px;
   float: left;
+  
 }
+
 .table tr td {
-  border: 1px solid black;
+  border: 1px solid rgb(255, 255, 255);
+  color: white !important;
 }
 .table thead th {
   border: 1px solid black;
+  
+
 }
 form input {
   margin-top: 10px;
@@ -86,3 +116,33 @@ form label {
   width: 1100px;
   margin: 80px 0 0 130px;
 }
+
+body {
+  background-color:#152036 !important;
+}
+
+a {
+  color: rgb(245 164 37) !important;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: rgb(245 164 37) !important;
+  border-color: rgb(245 164 37) !important;
+  
+}
+.footer1{
+  width: 100%;
+  color: white;
+  margin-top:100px;
+  text-align: center;
+  
+}
+.info{
+  margin-top:20px;
+  width: 300px;
+}
+.add-lesson{
+  margin-top: 100px;
+}
+=

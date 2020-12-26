@@ -62,7 +62,7 @@ def login(request):
                     request.session['user_id'] = user.id
                     request.session['first_name'] = user.first_name
                     request.session['last_name'] = user.last_name
-                return redirect('/parent-profile/'+str(request.session['user_id']))
+                return redirect('/home/')
     if request.POST['options'] == "teacher":
         email = request.POST['email']
         user = models.get_teacher(email)

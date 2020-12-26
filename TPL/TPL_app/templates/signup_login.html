@@ -101,19 +101,19 @@
             <div class="pics">
             <div class='row'>
                 <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="{% static 'images/teacher.jpg' %}" alt-src="{% static 'images/logo.png' %}">
+                    <img class="card-img-top" src="{% static 'images/teacher.png' %}" alt-src="{% static 'images/logo.png' %}">
                     <div class="card-body">
                     <p class="card-text"> 200+ Coding Teachers</p>
                     </div>
                 </div>
                 <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="{% static 'images/teacher.jpg' %}" alt-src="{% static 'images/logo.png' %}">
+                    <img class="card-img-top" src="{% static 'images/test2.png' %}" alt-src="{% static 'images/logo.png' %}">
                     <div class="card-body">
                     <p class="card-text">3000+ English Teachers</p>
                     </div>
                 </div>
                 <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="{% static 'images/teacher.jpg' %}" alt-src="{% static 'images/logo.png' %}">
+                    <img class="card-img-top" src="{% static 'images/test3.png' %}" alt-src="{% static 'images/logo.png' %}">
                     <div class="card-body">
                     <p class="card-text">3000+ Math Teachers.</p>
                     </div>
@@ -121,19 +121,19 @@
                 </div>
                 <div class='row'>
                     <div class="card" style="width: 18rem;">
-                        <img class="card-img-top" src="{% static 'images/teacher.jpg' %}" alt-src="{% static 'images/logo.png' %}">
+                        <img class="card-img-top" src="{% static 'images/test4.png' %}" alt-src="{% static 'images/logo.png' %}">
                         <div class="card-body">
                         <p class="card-text">3000+ Arabic Teachers</p>
                         </div>
                     </div>
                     <div class="card" style="width: 18rem;">
-                        <img class="card-img-top" src="{% static 'images/teacher.jpg' %}" alt-src="{% static 'images/logo.png' %}">
+                        <img class="card-img-top" src="{% static 'images/test5.png' %}" alt-src="{% static 'images/logo.png' %}">
                         <div class="card-body">
                         <p class="card-text">2500+ PT Teachers</p>
                         </div>
                     </div>
                     <div class="card" style="width: 18rem;">
-                        <img class="card-img-top" src="{% static 'images/teacher.jpg' %}" alt-src="{% static 'images/logo.png' %}">
+                        <img class="card-img-top" src="{% static 'images/test6.png' %}" alt-src="{% static 'images/logo.png' %}">
                         <div class="card-body">
                         <p class="card-text">3000+ History Teachers</p>
                         </div>
@@ -212,12 +212,12 @@
             </form>
             <br>
             <form action="/login" method="post" class="form-signin" style= "width: 450px;">
+                <h2 class="form-signin-heading"> login</h2><br>
                 {% csrf_token %}
                 <input type="radio" class="btn-check" id="login_parent" name="options" value="parent" required>
                     <label class="btn btn-secondary" for="login_parent">Parent</label>
                 <input type="radio" class="btn-check" id="login_teacher" name="options" value="teacher" required>
                     <label class="btn btn-secondary" for="login_teacher">Teacher</label><br><br>    
-                <h2 class="form-signin-heading"> login</h2><br>
                 <input type="text" class="form-control" name="email" placeholder="Email Address" required><br>
                 <input type="password" class="form-control" name="password" placeholder="Password" required><br>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
@@ -232,5 +232,8 @@
     {% endfor %}
 </ul>
 {% endif %}
+<div class="footer1">
+    <footer class="card-header">Teacher lesson Privite - 2020</footer>
+</div>
 </body>
 </html>

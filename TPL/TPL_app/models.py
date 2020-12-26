@@ -15,7 +15,7 @@ class Teacher(models.Model):
     education = models.CharField(max_length=255)
     email = models.CharField(max_length=255, null=True)
     password = models.CharField(max_length=255, null=True)
-    profile_pic = models.ImageField(upload_to=f'TPL_app/static/images/', null=True, blank=True)
+    profile_pic = models.ImageField(upload_to='images/', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -26,7 +26,7 @@ class Parent(models.Model):
     occupation = models.CharField(max_length=255, blank=True)
     email = models.CharField(max_length=255, null=True)
     password = models.CharField(max_length=255, null=True)
-    profile_pic = models.ImageField(upload_to='TPL_app/static/images/', null=True, blank=True)
+    profile_pic = models.ImageField(upload_to='images/', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
