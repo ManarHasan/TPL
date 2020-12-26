@@ -11,7 +11,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="head">
-            <img src="{% static 'images/logo.png' %}" width="200px">
+            <img src="{% static 'images/logo1.png' %}" width="200px">
             <h1 class="display-4" >TPL</h1>
         </div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -23,11 +23,17 @@
                 <a class="nav-link active" href="#">My profile</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="/logout">logout</a>
+                <a class="nav-link active" href="#">Teacher</a>
             </li>
-            
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Subjects</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Support</a>
+            </li>
+            </ul>
         </nav>
-    <div class='main'>
+    <main>
         <div class="row">
         <div class="col-2">
         <form action="/add_child_to_lesson/{{request.session.user_id}}/{{d}}/{{n}}/{{tid}}" method="post">
@@ -37,18 +43,13 @@
             <option value="{{child.id}}">{{child.first_name}}</option>
             {% endfor %}
         </select>
-        <br>
         <input type="submit" class="btn-primary" value="Add Lesson">
         </form>
         </div>
         </div>
-        {% if messages %}
-        <ul class="messages">    
-            {% for message in messages %}    
-                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
-            {% endfor %}
-        </ul>
-        {% endif %}
+    </main>
+    <div class="footer1">
+        <footer class="card-header">Teacher lesson Privite - 2020</footer>
     </div>
 </body>
 </html>

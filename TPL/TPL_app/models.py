@@ -177,14 +177,6 @@ def is_available(day, time, id):
     return True
 
 
-def child_is_available(child,day, time):
-    lessons = Lesson.objects.filter(day=day, time=time, child=child)
-    print(lessons)
-    if len(lessons) > 0:
-        return False
-    return True
-
-
 def lesson_validator(postData, id):
     errors = {}
     if len(postData['title']) < 2:

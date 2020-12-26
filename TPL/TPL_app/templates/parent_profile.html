@@ -11,21 +11,27 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="head">
-            <img src="{% static 'images/logo.png' %}" width="100px">
+            <img src="{% static 'images/logo1.png' %}" width="100px">
             <div class="empty"></div>
             <h1 class="display-3" >TPL</h1>
         </div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" href='/home'>Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">My profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="/logout">logout</a>
-                </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#">My profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Teacher</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Subjects</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Support</a>
+            </li>
             </ul>
         </nav>
         <img class ="profile-pic" src="{% static 'images/profile_pic.png' %}" width="200px">
@@ -41,29 +47,10 @@
             <li class="nav-item">
             <a class="nav-link active" href="#">Link</a>
             </li>
+            <li class="nav-item">
+            <a class="nav-link active" href="#">Disabled</a>
+            </li>
         </ul>
-        <br>
-        <info>
-            <h3>Children Information</h3>
-            <table class='table'>
-                <thead>
-                    <tr class='table-info'>
-                        <th>Name of child</th>
-                        <th>Age of child</th>
-                        <th>Grade</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for child in children %}<tr>
-                    <td>{{child.first_name}}</td>
-                    <td>{{child.age}}</td>
-                    <td>{{child.grade}}</td>
-                    </tr>
-                    {% endfor %}
-                    </tbody>
-                </thead>
-            </table>
-        </info>
     </aside>
     <main>
         <table class="table">
@@ -91,6 +78,9 @@
             </tbody>
         </table>
     </main>
-    <footer class="card-header">2020</footer>
+    <div class="footer1">
+        <footer class="card-header">Teacher lesson Privite - 2020</footer>
+    </div>
+   
 </body>
 </html>
