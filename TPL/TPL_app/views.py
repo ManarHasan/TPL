@@ -5,6 +5,8 @@ from . import models
 import datetime
 from django.contrib import messages
 import bcrypt
+from django.template.loader import render_to_string
+from django.http import JsonResponse
 
 
 def login_registration(request):
@@ -23,7 +25,7 @@ def register(request):
                 messages.error(request, value)
                 return redirect('/')
         user = models.add_parent(request.POST, pw_hash)
-        child = models.add_child(request.POST, user.id)
+        models.add_child(request.POST, user.id)
         if 'user_id' not in request.session:
             request.session['type'] = "parent"
             request.session['user_id'] = user.id
@@ -95,7 +97,7 @@ def parent_profile(request, id):
     context = {
         "parent": parent,
         "children": children,
-        "all_lessons": all_lessons
+        "all_lessons": all_lessons,
     }
     return render(request, "parent_profile.html", context)
 
@@ -105,14 +107,13 @@ def teacher_profile(request, id):
     students = teacher.lessons.all()
     all_lessons_for_each_student = []
     all_teacher_lessons = Lesson.objects.filter(teacher=Teacher.objects.get(id=id))
-    all_times = []
-    for child in students:
-        all_lessons_for_each_student.append(Lesson.objects.filter(
-            teacher=teacher, child=child.id))
-    for child in all_lessons_for_each_student:
-        for lessons in child:
-            print(lessons.day)
-            
+    for lesson in all_teacher_lessons:
+        if lesson.child is None:
+            print(lesson.child)
+            continue
+        print(lesson.child)
+        all_lessons_for_each_student.append(lesson)
+    print(all_lessons_for_each_student)
     context = {
         "teacher": teacher,
         "students": students,
@@ -127,14 +128,13 @@ def teacher_profile(request, id):
 
 
 def add_lesson(request, id):
-    teacher = Teacher.objects.get(id=id)
     errors = models.lesson_validator(
         request.POST, id)
     if len(errors) > 0:
         for key, value in errors.items():
             messages.error(request, value)
             return redirect('/teacher-profile/'+str(id))
-    lesson = models.add_lesson(request.POST, id)
+    models.add_lesson(request.POST, id)
     return redirect('/teacher-profile/'+str(id))
 
 
@@ -158,4 +158,28 @@ def signup_to_lesson(request, id, d, n, tid):
     return redirect('/teacher-profile/'+str(tid))
 
 def home(request):
-    return render(request, "home_page.html")
+    context = {}
+    url_parameter = request.GET.get("q")
+    print(url_parameter)
+    if url_parameter:
+        teachers = Teacher.objects.filter(first_name__icontains=url_parameter)
+        teacher_subject = Teacher.objects.filter(specialization__icontains=url_parameter)
+    else:
+        teachers = Teacher.objects.all()
+        teacher_subject = Teacher.objects.all()
+    context['teachers'] = teachers
+    context['specialization'] = teacher_subject
+    if request.is_ajax():
+        html = render_to_string(
+            template_name="search.html", 
+            context={
+                "teachers": teachers,
+                "specialization": teacher_subject
+                }
+        )
+
+        data_dict = {"html_from_view": html}
+
+        return JsonResponse(data=data_dict, safe=False)
+
+    return render(request, "home_page.html", context)

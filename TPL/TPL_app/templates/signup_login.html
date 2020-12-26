@@ -33,7 +33,46 @@
                     $('#teacher-education').focus();
                 });
             });
-    });
+        });
+        function addFields(){
+            // Number of inputs to create
+            var number = document.getElementById("tbnumber").value;
+            // Container <div> where dynamic content will be placed
+            var container = document.getElementById("more-containers");
+            // Clear previous contents of the container
+            while (container.hasChildNodes()) {
+                container.removeChild(container.lastChild);
+            }
+            for (i=0;i<number;i++){
+                // Append a node with a random text
+                container.appendChild(document.createTextNode("Child " + (i+1)+ " Name"));
+                // Create an <input> element, set its type and name attributes
+                var input_1 = document.createElement("input");
+                input_1.type = "text";
+                input_1.class = "form-control"
+                input_1.name = "child_name" + i;
+                var input_2 = document.createElement("input");
+                input_2.type = "number";
+                input_2.class = "form-control"
+                input_2.name = "age" + i;
+                var input_3 = document.createElement("input");
+                input_3.type = "number";
+                input_3.class = "form-control"
+                input_3.name = "grade" + i;
+                container.appendChild(document.createElement("br"));
+                container.appendChild(input_1);
+                container.appendChild(document.createElement("br"));
+                container.appendChild(document.createTextNode("Child " + (i+1)+ " Age"));
+                container.appendChild(document.createElement("br"));
+                container.appendChild(input_2);
+                container.appendChild(document.createElement("br"));
+                container.appendChild(document.createTextNode("Child " + (i+1)+ " Grade"));
+                container.appendChild(document.createElement("br"));
+                container.appendChild(input_3);
+                // Append a line break 
+                container.appendChild(document.createElement("br"));
+            }
+        }
     </script>
 </head>
 <body>
@@ -128,6 +167,8 @@
                 <div id="container-1" style="display:none; width:308px; font:15px Verdana; border:solid 1px #CCC; padding:10px;">
                     <label>Number of children:</label>
                     <input type="number" class="form-control" id="tbnumber" name="number_of_children">
+                    <a href="#" id="filldetails" onclick="addFields()" class="btn-primary">Add Kids</a>
+                    <div id="more-containers">
                     <label>Child Name: </label>
                     <input type="text" class="form-control" id="tbname" name="child_name">
                     <label>Age:</label>
@@ -139,23 +180,39 @@
                     </select>
                     <label>grade:</label>
                     <input type="number" class="form-control" name="grade">
+                    </div>
         </div>
         <div id="container-2" style="display:none; width:308px; font:15px Verdana; border:solid 1px #CCC; padding:10px;">
             <div>
                 <div>
                     <label>Education: </label>
-                    <div><select class="form-control" name="education" id="teacher-education">
-                        <option value="1">High School</option>
-                        <option value="1">Bacherlor's</option>
-                        <option value="1">Master's</option>
+                    <div><select class="form-select" name="education" id="teacher-education">
+                        <option value="High School">High School</option>
+                        <option value="Bachelor's">Bacherlor's</option>
+                        <option value="Master's">Master's</option>
+                        <option value="PHD">PHD</option>
                         </select></div>
                 </div>
                 <div>
                     <label>Specialization:</label>
-                    <div><select class="form-control" name="specialization" id="teacher-specialization">
-                        <option value="1">Arabic</option>
-                        <option value="1">English</option>
-                        <option value="1">Math</option>
+                    <div><select class="form-select" name="specialization" id="teacher-specialization">
+                        <option value="Arabic">Arabic</option>
+                        <option value="English">English</option>
+                        <option value="Mathematics">Mathematics</option>
+                        <option value="Science">Science</option>
+                        <option value="French">French</option>
+                        <option value="Religious Education">Religious Education</option>
+                        <option value="Physical Education">Physical Education</option>
+                        <option value="History">History</option>
+                        <option value="Geography">Geography</option>
+                        <option value="Physics">Physics</option>
+                        <option value="Chemistry">Chemistry</option>
+                        <option value="Geology">Geology</option>
+                        <option value="Biology">Biology</option>
+                        <option value="Philosophy">Philosophy</option>
+                        <option value="Technology">Technology</option>
+                        <option value="Music">Music</option>
+                        <option value="Economics">Economics</option>
                         </select></div></div>
             </div>
         </div>

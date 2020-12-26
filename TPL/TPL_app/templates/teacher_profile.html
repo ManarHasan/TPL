@@ -54,30 +54,28 @@
     </aside>
         {% if request.session.type == "teacher" %}
         <main>
-        <table class="table">
-            <thead>
-                <tr class="table-info">
-                    <th>Student</th>
-                    <th>Teacher</th>
-                    <th>Title</th>
-                    <th>Date/Time</th>
-                    <th>Type</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for child in all_lessons %}
-                    {% for lesson in child %}
-                <tr>
-                    <td>{{lesson.child.first_name}} {{lesson.child.last_name}}</td>
-                    <td>{{lesson.teacher.first_name}} {{lesson.teacher.last_name}}</td>
-                    <td>{{lesson.title}}</td>
-                    <td>{{lesson.day}} {{lesson.time}}</td>
-                    <td>{{lesson.style}}</td>
-                </tr>
-                {% endfor %}
-                {% endfor %}
-            </tbody>
-        </table>
+            <table class="table">
+                <thead>
+                    <tr class="table-info">
+                        <th>Student</th>
+                        <th>Teacher</th>
+                        <th>Title</th>
+                        <th>Date/Time</th>
+                        <th>Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for lesson in all_lessons %}
+                    <tr>
+                        <td>{{lesson.child.first_name}} {{lesson.child.last_name}}</td>
+                        <td>{{lesson.teacher.first_name}} {{lesson.teacher.last_name}}</td>
+                        <td>{{lesson.title}}</td>
+                        <td>{{lesson.day}} {{lesson.time}}</td>
+                        <td>{{lesson.style}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
     </main>
     <form action="/add_lesson/{{request.session.user_id}}" method="post">
         {% csrf_token %}
@@ -294,8 +292,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for child in all_lessons %}
-                {% for lesson in child %}
+            {% for lesson in all_lessons %}
             <tr>
                 <td>{{lesson.child.first_name}} {{lesson.child.last_name}}</td>
                 <td>{{lesson.teacher.first_name}} {{lesson.teacher.last_name}}</td>
@@ -303,7 +300,6 @@
                 <td>{{lesson.day}} {{lesson.time}}</td>
                 <td>{{lesson.style}}</td>
             </tr>
-            {% endfor %}
             {% endfor %}
         </tbody>
     </table>

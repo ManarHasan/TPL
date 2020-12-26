@@ -65,8 +65,9 @@ def add_parent(postData, pw_hash):
 
 
 def add_child(postData, user_id):
-    child = Child.objects.create(first_name=postData['child_name'], last_name=postData['lname'],
-                                 age=postData['age'], gender=postData['gender'], grade=postData['grade'], parent=Parent.objects.get(id=user_id))
+    for i in range(int(postData['number_of_children'])):
+        child = Child.objects.create(first_name=postData[f'child_name{i}'], last_name=postData['lname'],
+                                    age=postData[f'age{i}'], gender="male", grade=postData[f'grade{i}'], parent=Parent.objects.get(id=user_id))
     return child
 
 

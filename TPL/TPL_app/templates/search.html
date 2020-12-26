@@ -1,0 +1,41 @@
+<div class="row">
+    <div class="col-4">
+{% if teachers %}
+    <table class="table">
+        <thead>
+            <th>Teacher name</th>
+            <th>Specialization</th>
+        </thead>
+        <tbody>
+            {% for teacher in teachers %}
+            <tr>
+            <td><a href="teacher-profile/{{teacher.id}}">{{teacher.first_name}} {{teacher.last_name}}</a></td>
+            <td>{{teacher.specialization}}</td>
+            </tr> 
+            {% endfor %}
+            </tbody>
+        {% else %}
+        <div>No teachers found.</div>
+    </ul>
+{% endif %}
+    </div>
+    <div class="col-4">
+{% if specialization %}
+    <table class="table">
+        <thead>
+            <th>Teacher name</th>
+            <th>Specialization</th>
+        </thead>
+        <tbody>
+        {% for subject in specialization %}
+        <tr>
+        <td><a href="teacher-profile/{{subject.id}}">{{subject.first_name}} {{subject.last_name}}</a></td>
+        <td>{{subject.specialization}}</td>
+        </tr> 
+        {% endfor %}
+        </tbody>
+        {% else %}
+        <div>No subjects found.</div>
+{% endif %}
+</div>
+</div>
