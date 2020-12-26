@@ -23,17 +23,11 @@
                 <a class="nav-link active" href="#">My profile</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="#">Teacher</a>
+                <a class="nav-link active" href="/logout">logout</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="#">Subjects</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="#">Support</a>
-            </li>
-            </ul>
+            
         </nav>
-    <main>
+    <div class='main'>
         <div class="row">
         <div class="col-2">
         <form action="/add_child_to_lesson/{{request.session.user_id}}/{{d}}/{{n}}/{{tid}}" method="post">
@@ -43,10 +37,18 @@
             <option value="{{child.id}}">{{child.first_name}}</option>
             {% endfor %}
         </select>
+        <br>
         <input type="submit" class="btn-primary" value="Add Lesson">
         </form>
         </div>
         </div>
-    </main>
+        {% if messages %}
+        <ul class="messages">    
+            {% for message in messages %}    
+                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
 </body>
 </html>
