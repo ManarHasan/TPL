@@ -34,65 +34,19 @@
             </ul>
         </nav>
     <main>
-        <h2 class="display-6">Mr. Mohammad Donbok</h2>
-        <table class="table">
-            <thead>
-                <th>Day</th>
-                <th>8-9</th>
-                <th>9-10</th>
-                <th>10-11</th>
-                <th>11-12</th>
-                <th>12-1</th>
-                <th>1-2</th>
-            </thead>
-            <tbody>
-                <tr class="table-warning">
-                    <td>Sunday</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr class="table-warning">
-                    <td>Monday</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr class="table-warning">
-                    <td>Tuesday</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr class="table-warning">
-                    <td>Wednesday</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr class="table-warning">
-                    <td>Thursday</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="row">
+        <div class="col-2">
+        <form action="/add_child_to_lesson/{{request.session.user_id}}/{{d}}/{{n}}/{{tid}}" method="post">
+            {% csrf_token %}
+        <select name="child" class="form-select">
+            {% for child in children %}
+            <option value="{{child.id}}">{{child.first_name}}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" class="btn-primary" value="Add Lesson">
+        </form>
+        </div>
+        </div>
     </main>
 </body>
 </html>

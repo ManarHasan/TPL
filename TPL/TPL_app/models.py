@@ -1,4 +1,7 @@
 from django.db import models
+import time
+from datetime import datetime, date
+from django import forms
 import re
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 NAME_REGEX = re.compile(r'^[a-zA-Z]+$')
@@ -48,7 +51,8 @@ class Lesson(models.Model):
     style = models.CharField(max_length=255, null=True)
     child = models.ForeignKey(
         Child, on_delete=models.CASCADE, blank=True, null=True)
-    time = models.DateTimeField(null=True)
+    day = models.CharField(max_length=255, null=True)
+    time = models.CharField(max_length=255, null=True)
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -73,11 +77,8 @@ def add_teacher(postData, pw_hash):
 
 
 def add_lesson(postData, id):
-    time = "2020, "+str(postData['time'])+", " + \
-        str(postData['day'])+", " + \
-        str(postData['month'])+", 0, 0, tzinfo=<UTC>"
     lesson = Lesson.objects.create(title=postData['title'], description=postData['description'], max_students=1,
-                                   price=postData['price'], style=postData['style'], time=time, teacher=Teacher.objects.get(id=id))
+                                   price=postData['price'], style=postData['style'], day=postData['day'], time=postData['time'], teacher=Teacher.objects.get(id=id))
     return lesson
 
 
@@ -167,10 +168,20 @@ def child_validator(postData):
     return errors
 
 
-def lesson_validator(postData):
+def is_available(day, time, id):
+    lessons = Lesson.objects.filter(day=day, time=time, teacher=Teacher.objects.get(id=id))
+    print(lessons)
+    if len(lessons) > 0:
+        return False
+    return True
+
+
+def lesson_validator(postData, id):
     errors = {}
     if len(postData['title']) < 2:
         errors['title'] = "title should have at least many characters"
-    if len(postData['description ']) < 5:
-        errors['description'] = "description  should have at least many characters"
+    if validate_text(postData['description'], min_length=5) == 1:
+        errors['description'] = "description  should have at least 5 characters"
+    if is_available(postData['day'], postData['time'], id) == False:
+        errors['time'] = "You already have a lesson at this time!"
     return errors

@@ -52,7 +52,8 @@
             </li>
         </ul>
     </aside>
-    <main>
+        {% if request.session.type == "teacher" %}
+        <main>
         <table class="table">
             <thead>
                 <tr class="table-info">
@@ -70,7 +71,7 @@
                     <td>{{lesson.child.first_name}} {{lesson.child.last_name}}</td>
                     <td>{{lesson.teacher.first_name}} {{lesson.teacher.last_name}}</td>
                     <td>{{lesson.title}}</td>
-                    <td>{{lesson.time}}</td>
+                    <td>{{lesson.day}} {{lesson.time}}</td>
                     <td>{{lesson.style}}</td>
                 </tr>
                 {% endfor %}
@@ -78,28 +79,11 @@
             </tbody>
         </table>
     </main>
-    <form>
-        <label for="child">Choose student:</label>
-        <select name="child" class="form-select" aria-label="Default select example">
-            <option selected>Open this select menu</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-        </select>
-        <label for="lesson">Choose lesson:</label>
-        <select name="lesson" class="form-select" aria-label="Default select example">
-            <option selected>Open this select menu</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-        </select>
-        <input type="submit" value="Enroll" class="btn-primary">
-    </form>
     <form action="/add_lesson/{{request.session.user_id}}" method="post">
         {% csrf_token %}
-    <input type="text" name="title" class="form-control" placeholder="Title">
-    <textarea name="description" class="form-control" placeholder="Description"></textarea>
-    <input type="number" class="form-control" name="price" placeholder="What's the price?">
+    <input type="text" name="title" class="form-control" placeholder="Title" required>
+    <textarea name="description" class="form-control" placeholder="Description" required></textarea>
+    <input type="number" class="form-control" name="price" placeholder="What's the price?" required>
     <select name="style">
         <option value="online">Online</option>
         <option value="on-site">On-site</option>
@@ -113,49 +97,13 @@
         <option value="1">1-2</option>
     </select>
     <select name="day">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
-        <option value="11">11</option>
-        <option value="12">12</option>
-        <option value="13">13</option>
-        <option value="14">14</option>
-        <option value="15">15</option>
-        <option value="16">16</option>
-        <option value="17">17</option>
-        <option value="18">18</option>
-        <option value="19">19</option>
-        <option value="20">20</option>
-        <option value="21">21</option>
-        <option value="22">22</option>
-        <option value="23">23</option>
-        <option value="24">24</option>
-        <option value="25">25</option>
-        <option value="26">26</option>
-        <option value="27">27</option>
-        <option value="28">28</option>
-        <option value="29">29</option>
-        <option value="30">30</option>
-    </select>
-    <select name="month">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">9</option>
-        <option value="10">10</option>
-        <option value="11">11</option>
-        <option value="12">12</option>
+        <option value="sunday">Sunday</option>
+        <option value="monday">Monday</option>
+        <option value="tuesday">Tuesday</option>
+        <option value="wednesday">Wednesday</option>
+        <option value="thursday">Thursday</option>
+        <option value="friday">Friday</option>
+        <option value="saturday">Saturday</option>
     </select>
     <input type="submit" class="btn-primary" value="Add Lesson">
     </form>
@@ -166,6 +114,7 @@
                 <th></th>
                 <th>8-9</th>
                 <th>9-10</th>
+                <th>10-11</th>
                 <th>11-12</th>
                 <th>12-1</th>
                 <th>1-2</th>
@@ -174,47 +123,367 @@
         <tbody>
             <tr>
                 <td><a href="#">Sunday</a></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{% for lesson in all_teacher_lessons %}
+                    {% if lesson.day == "sunday" %}{% if lesson.time == "8" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
+                    {% endfor %}</td>
+                <td>{% for lesson in all_teacher_lessons %}
+                    {% if lesson.day == "sunday" %}{% if lesson.time == "9" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
+                    {% endfor %}</td>
+                <td>{% for lesson in all_teacher_lessons %}
+                    {% if lesson.day == "sunday" %}{% if lesson.time == "10" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
+                    {% endfor %}</td>
+                <td>{% for lesson in all_teacher_lessons %}
+                    {% if lesson.day == "sunday" %}{% if lesson.time == "11" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
+                    {% endfor %}</td>
+                <td>{% for lesson in all_teacher_lessons %}
+                    {% if lesson.day == "sunday" %}{% if lesson.time == "12" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
+                    {% endfor %}</td>
+                <td>{% for lesson in all_teacher_lessons %}
+                    {% if lesson.day == "sunday" %}{% if lesson.time == "1" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
+                    {% endfor %}</td>
             </tr>
-            <tr class="table-secondary">
+            <tr>
                 <td><a href="#">Monday</a></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{% for lesson in all_teacher_lessons %}
+                    {% if lesson.day == "monday" %}{% if lesson.time == "8" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
+                    {% endfor %}</td>
+                <td>{% for lesson in all_teacher_lessons %}
+                    {% if lesson.day == "monday" %}{% if lesson.time == "9" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
+                    {% endfor %}</td>
+                <td>{% for lesson in all_teacher_lessons %}
+                    {% if lesson.day == "monday" %}{% if lesson.time == "10" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
+                    {% endfor %}</td>
+                <td>{% for lesson in all_teacher_lessons %}
+                    {% if lesson.day == "monday" %}{% if lesson.time == "11" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
+                    {% endfor %}</td>
+                <td>{% for lesson in all_teacher_lessons %}
+                    {% if lesson.day == "monday" %}{% if lesson.time == "12" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
+                    {% endfor %}</td>
+                <td>{% for lesson in all_teacher_lessons %}
+                    {% if lesson.day == "monday" %}{% if lesson.time == "1" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
+                    {% endfor %}</td>
             </tr>
             <tr>
                 <td><a href="#">Tuesday</a></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{% for lesson in all_teacher_lessons %}
+                    {% if lesson.day == "tuesday" %}{% if lesson.time == "8" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
+                    {% endfor %}</td>
+                <td>{% for lesson in all_teacher_lessons %}
+                    {% if lesson.day == "tuesday" %}{% if lesson.time == "9" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
+                    {% endfor %}</td>
+                <td>{% for lesson in all_teacher_lessons %}
+                    {% if lesson.day == "tuesday" %}{% if lesson.time == "10" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
+                    {% endfor %}</td>
+                <td>{% for lesson in all_teacher_lessons %}
+                    {% if lesson.day == "tuesday" %}{% if lesson.time == "11" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
+                    {% endfor %}</td>
+                <td>{% for lesson in all_teacher_lessons %}
+                    {% if lesson.day == "tuesday" %}{% if lesson.time == "12" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
+                    {% endfor %}</td>
+                <td>{% for lesson in all_teacher_lessons %}
+                    {% if lesson.day == "tuesday" %}{% if lesson.time == "1" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
+                    {% endfor %}</td>
             </tr>
-            <tr class="table-secondary">
+
+            <tr>
                 <td><a href="#">Wednesday</a></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{% for lesson in all_teacher_lessons %}
+                    {% if lesson.day == "wednesday" %}{% if lesson.time == "8" %}<a href="delete_lesson">{{lesson.title}}</a href="delete_lesson">{% endif %}{% endif %}
+                    {% endfor %}</td>
+                <td>{% for lesson in all_teacher_lessons %}
+                    {% if lesson.day == "wednesday" %}{% if lesson.time == "9" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
+                    {% endfor %}</td>
+                <td>{% for lesson in all_teacher_lessons %}
+                    {% if lesson.day == "wednesday" %}{% if lesson.time == "10" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
+                    {% endfor %}</td>
+                <td>{% for lesson in all_teacher_lessons %}
+                    {% if lesson.day == "wednesday" %}{% if lesson.time == "11" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
+                    {% endfor %}</td>
+                <td>{% for lesson in all_teacher_lessons %}
+                    {% if lesson.day == "wednesday" %}{% if lesson.time == "12" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
+                    {% endfor %}</td>
+                <td>{% for lesson in all_teacher_lessons %}
+                    {% if lesson.day == "wednesday" %}{% if lesson.time == "1" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
+                    {% endfor %}</td>
             </tr>
             <tr>
                 <td><a href="#">Thursday</a></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{% for lesson in all_teacher_lessons %}
+                    {% if lesson.day == "thursday" %}{% if lesson.time == "8" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
+                    {% endfor %}</td>
+                <td>{% for lesson in all_teacher_lessons %}
+                    {% if lesson.day == "thursday" %}{% if lesson.time == "9" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
+                    {% endfor %}</td>
+                <td>{% for lesson in all_teacher_lessons %}
+                    {% if lesson.day == "thursday" %}{% if lesson.time == "10" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
+                    {% endfor %}</td>
+                <td>{% for lesson in all_teacher_lessons %}
+                    {% if lesson.day == "thursday" %}{% if lesson.time == "11" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
+                    {% endfor %}</td>
+                <td>{% for lesson in all_teacher_lessons %}
+                    {% if lesson.day == "thursday" %}{% if lesson.time == "12" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
+                    {% endfor %}</td>
+                <td>{% for lesson in all_teacher_lessons %}
+                    {% if lesson.day == "thursday" %}{% if lesson.time == "1" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
+                    {% endfor %}</td>
+            </tr>
+            <tr>
+                <td><a href="#">Friday</a></td>
+                <td>{% for lesson in all_teacher_lessons %}
+                    {% if lesson.day == "friday" %}{% if lesson.time == "8" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
+                    {% endfor %}</td>
+                <td>{% for lesson in all_teacher_lessons %}
+                    {% if lesson.day == "friday" %}{% if lesson.time == "9" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
+                    {% endfor %}</td>
+                <td>{% for lesson in all_teacher_lessons %}
+                    {% if lesson.day == "friday" %}{% if lesson.time == "10" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
+                    {% endfor %}</td>
+                <td>{% for lesson in all_teacher_lessons %}
+                    {% if lesson.day == "friday" %}{% if lesson.time == "11" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
+                    {% endfor %}</td>
+                <td>{% for lesson in all_teacher_lessons %}
+                    {% if lesson.day == "friday" %}{% if lesson.time == "12" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
+                    {% endfor %}</td>
+                <td>{% for lesson in all_teacher_lessons %}
+                    {% if lesson.day == "friday" %}{% if lesson.time == "1" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
+                    {% endfor %}</td>
+            </tr>
+            <tr>
+                <td><a href="#">Saturday</a></td>
+                <td>{% for lesson in all_teacher_lessons %}
+                    {% if lesson.day == "saturday" %}{% if lesson.time == "8" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
+                    {% endfor %}</td>
+                <td>{% for lesson in all_teacher_lessons %}
+                    {% if lesson.day == "saturday" %}{% if lesson.time == "9" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
+                    {% endfor %}</td>
+                <td>{% for lesson in all_teacher_lessons %}
+                    {% if lesson.day == "saturday" %}{% if lesson.time == "10" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
+                    {% endfor %}</td>
+                <td>{% for lesson in all_teacher_lessons %}
+                    {% if lesson.day == "saturday" %}{% if lesson.time == "11" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
+                    {% endfor %}</td>
+                <td>{% for lesson in all_teacher_lessons %}
+                    {% if lesson.day == "saturday" %}{% if lesson.time == "12" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
+                    {% endfor %}</td>
+                <td>{% for lesson in all_teacher_lessons %}
+                    {% if lesson.day == "saturday" %}{% if lesson.time == "1" %}<a href="delete_lesson">{{lesson.title}}</a>{% endif %}{% endif %}
+                    {% endfor %}</td>
             </tr>
         </tbody>
     </table>
     </div>
+    {% if messages %}
+    <ul class="messages">    
+    {% for message in messages %}    
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+    {% endfor %}
+    </ul>
+    {% endif %}
     <footer class="card-header">2020</footer>
+{% endif %}
+<main>
+    {% if request.session.type == "parent" %}
+    <table class="table">
+        <thead>
+            <tr class="table-info">
+                <th>Student</th>
+                <th>Teacher</th>
+                <th>Title</th>
+                <th>Date/Time</th>
+                <th>Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for child in all_lessons %}
+                {% for lesson in child %}
+            <tr>
+                <td>{{lesson.child.first_name}} {{lesson.child.last_name}}</td>
+                <td>{{lesson.teacher.first_name}} {{lesson.teacher.last_name}}</td>
+                <td>{{lesson.title}}</td>
+                <td>{{lesson.day}} {{lesson.time}}</td>
+                <td>{{lesson.style}}</td>
+            </tr>
+            {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+</main>
+<div class="row">
+<div class="schedule col-10">
+<table class="table">
+    <thead>
+        <tr class="table-secondary">
+            <th></th>
+            <th>8-9</th>
+            <th>9-10</th>
+            <th>10-11</th>
+            <th>11-12</th>
+            <th>12-1</th>
+            <th>1-2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><a href="#">Sunday</a></td>
+            <td>{% for lesson in all_teacher_lessons %}
+                {% if lesson.day == "sunday" %}{% if lesson.time == "8" %}<a href="add-to-lesson/sunday/8/{{teacher.id}}">{{lesson.title}}</a>{% endif %}{% endif %}
+                {% endfor %}</td>
+            <td>{% for lesson in all_teacher_lessons %}
+                {% if lesson.day == "sunday" %}{% if lesson.time == "9" %}<a href="add-to-lesson/sunday/9/{{teacher.id}}">{{lesson.title}}</a>{% endif %}{% endif %}
+                {% endfor %}</td>
+            <td>{% for lesson in all_teacher_lessons %}
+                {% if lesson.day == "sunday" %}{% if lesson.time == "10" %}<a href="add-to-lesson/sunday/10/{{teacher.id}}">{{lesson.title}}</a>{% endif %}{% endif %}
+                {% endfor %}</td>
+            <td>{% for lesson in all_teacher_lessons %}
+                {% if lesson.day == "sunday" %}{% if lesson.time == "11" %}<a href="add-to-lesson/sunday/11/{{teacher.id}}">{{lesson.title}}</a>{% endif %}{% endif %}
+                {% endfor %}</td>
+            <td>{% for lesson in all_teacher_lessons %}
+                {% if lesson.day == "sunday" %}{% if lesson.time == "12" %}<a href="add-to-lesson/sunday/12/{{teacher.id}}">{{lesson.title}}</a>{% endif %}{% endif %}
+                {% endfor %}</td>
+            <td>{% for lesson in all_teacher_lessons %}
+                {% if lesson.day == "sunday" %}{% if lesson.time == "1" %}<a href="add-to-lesson/sunday/1/{{teacher.id}}">{{lesson.title}}</a>{% endif %}{% endif %}
+                {% endfor %}</td>
+        </tr>
+        <tr>
+            <td><a href="#">Monday</a></td>
+            <td>{% for lesson in all_teacher_lessons %}
+                {% if lesson.day == "monday" %}{% if lesson.time == "8" %}<a href="add-to-lesson/monday/8/{{teacher.id}}">{{lesson.title}}</a>{% endif %}{% endif %}
+                {% endfor %}</td>
+            <td>{% for lesson in all_teacher_lessons %}
+                {% if lesson.day == "monday" %}{% if lesson.time == "9" %}<a href="add-to-lesson/monday/9/{{teacher.id}}">{{lesson.title}}</a>{% endif %}{% endif %}
+                {% endfor %}</td>
+            <td>{% for lesson in all_teacher_lessons %}
+                {% if lesson.day == "monday" %}{% if lesson.time == "10" %}<a href="add-to-lesson/monday/10/{{teacher.id}}">{{lesson.title}}</a>{% endif %}{% endif %}
+                {% endfor %}</td>
+            <td>{% for lesson in all_teacher_lessons %}
+                {% if lesson.day == "monday" %}{% if lesson.time == "11" %}<a href="add-to-lesson/monday/11/{{teacher.id}}">{{lesson.title}}</a>{% endif %}{% endif %}
+                {% endfor %}</td>
+            <td>{% for lesson in all_teacher_lessons %}
+                {% if lesson.day == "monday" %}{% if lesson.time == "12" %}<a href="add-to-lesson/monday/12/{{teacher.id}}">{{lesson.title}}</a>{% endif %}{% endif %}
+                {% endfor %}</td>
+            <td>{% for lesson in all_teacher_lessons %}
+                {% if lesson.day == "monday" %}{% if lesson.time == "1" %}<a href="add-to-lesson/monday/1/{{teacher.id}}">{{lesson.title}}</a>{% endif %}{% endif %}
+                {% endfor %}</td>
+        </tr>
+        <tr>
+            <td><a href="#">Tuesday</a></td>
+            <td>{% for lesson in all_teacher_lessons %}
+                {% if lesson.day == "tuesday" %}{% if lesson.time == "8" %}<a href="add-to-lesson/tuesday/8/{{teacher.id}}">{{lesson.title}}</a>{% endif %}{% endif %}
+                {% endfor %}</td>
+            <td>{% for lesson in all_teacher_lessons %}
+                {% if lesson.day == "tuesday" %}{% if lesson.time == "9" %}<a href="add-to-lesson/tuesday/9/{{teacher.id}}">{{lesson.title}}</a>{% endif %}{% endif %}
+                {% endfor %}</td>
+            <td>{% for lesson in all_teacher_lessons %}
+                {% if lesson.day == "tuesday" %}{% if lesson.time == "10" %}<a href="add-to-lesson/tuesday/10/{{teacher.id}}">{{lesson.title}}</a>{% endif %}{% endif %}
+                {% endfor %}</td>
+            <td>{% for lesson in all_teacher_lessons %}
+                {% if lesson.day == "tuesday" %}{% if lesson.time == "11" %}<a href="add-to-lesson/tuesday/11/{{teacher.id}}">{{lesson.title}}</a>{% endif %}{% endif %}
+                {% endfor %}</td>
+            <td>{% for lesson in all_teacher_lessons %}
+                {% if lesson.day == "tuesday" %}{% if lesson.time == "12" %}<a href="add-to-lesson/tuesday/12/{{teacher.id}}">{{lesson.title}}</a>{% endif %}{% endif %}
+                {% endfor %}</td>
+            <td>{% for lesson in all_teacher_lessons %}
+                {% if lesson.day == "tuesday" %}{% if lesson.time == "1" %}<a href="add-to-lesson/tuesday/1/{{teacher.id}}">{{lesson.title}}</a>{% endif %}{% endif %}
+                {% endfor %}</td>
+        </tr>
+
+        <tr>
+            <td><a href="#">Wednesday</a></td>
+            <td>{% for lesson in all_teacher_lessons %}
+                {% if lesson.day == "wednesday" %}{% if lesson.time == "8" %}<a href="add-to-lesson/wednesday/8/{{teacher.id}}">{{lesson.title}}</a>{% endif %}{% endif %}
+                {% endfor %}</td>
+            <td>{% for lesson in all_teacher_lessons %}
+                {% if lesson.day == "wednesday" %}{% if lesson.time == "9" %}<a href="add-to-lesson/wednesday/9/{{teacher.id}}">{{lesson.title}}</a>{% endif %}{% endif %}
+                {% endfor %}</td>
+            <td>{% for lesson in all_teacher_lessons %}
+                {% if lesson.day == "wednesday" %}{% if lesson.time == "10" %}<a href="add-to-lesson/wednesday/10/{{teacher.id}}">{{lesson.title}}</a>{% endif %}{% endif %}
+                {% endfor %}</td>
+            <td>{% for lesson in all_teacher_lessons %}
+                {% if lesson.day == "wednesday" %}{% if lesson.time == "11" %}<a href="add-to-lesson/wednesday/11/{{teacher.id}}">{{lesson.title}}</a>{% endif %}{% endif %}
+                {% endfor %}</td>
+            <td>{% for lesson in all_teacher_lessons %}
+                {% if lesson.day == "wednesday" %}{% if lesson.time == "12" %}<a href="add-to-lesson/wednesday/12/{{teacher.id}}">{{lesson.title}}</a>{% endif %}{% endif %}
+                {% endfor %}</td>
+            <td>{% for lesson in all_teacher_lessons %}
+                {% if lesson.day == "wednesday" %}{% if lesson.time == "1" %}<a href="add-to-lesson/wednesday/1/{{teacher.id}}">{{lesson.title}}</a>{% endif %}{% endif %}
+                {% endfor %}</td>
+        </tr>
+        <tr>
+            <td><a href="#">Thursday</a></td>
+            <td>{% for lesson in all_teacher_lessons %}
+                {% if lesson.day == "thursday" %}{% if lesson.time == "8" %}<a href="add-to-lesson/thursday/8/{{teacher.id}}">{{lesson.title}}</a>{% endif %}{% endif %}
+                {% endfor %}</td>
+            <td>{% for lesson in all_teacher_lessons %}
+                {% if lesson.day == "thursday" %}{% if lesson.time == "9" %}<a href="add-to-lesson/thursday/9/{{teacher.id}}">{{lesson.title}}</a>{% endif %}{% endif %}
+                {% endfor %}</td>
+            <td>{% for lesson in all_teacher_lessons %}
+                {% if lesson.day == "thursday" %}{% if lesson.time == "10" %}<a href="add-to-lesson/thursday/10/{{teacher.id}}">{{lesson.title}}</a>{% endif %}{% endif %}
+                {% endfor %}</td>
+            <td>{% for lesson in all_teacher_lessons %}
+                {% if lesson.day == "thursday" %}{% if lesson.time == "11" %}<a href="add-to-lesson/thursday/11/{{teacher.id}}">{{lesson.title}}</a>{% endif %}{% endif %}
+                {% endfor %}</td>
+            <td>{% for lesson in all_teacher_lessons %}
+                {% if lesson.day == "thursday" %}{% if lesson.time == "12" %}<a href="add-to-lesson/thursday/12/{{teacher.id}}">{{lesson.title}}</a>{% endif %}{% endif %}
+                {% endfor %}</td>
+            <td>{% for lesson in all_teacher_lessons %}
+                {% if lesson.day == "thursday" %}{% if lesson.time == "1" %}<a href="add-to-lesson/thursday/1/{{teacher.id}}">{{lesson.title}}</a>{% endif %}{% endif %}
+                {% endfor %}</td>
+        </tr>
+        <tr>
+            <td><a href="#">Frhrefay</a></td>
+            <td>{% for lesson in all_teacher_lessons %}
+                {% if lesson.day == "frhrefay" %}{% if lesson.time == "8" %}<a href="add-to-lesson/friday/8/{{teacher.id}}">{{lesson.title}}</a>{% endif %}{% endif %}
+                {% endfor %}</td>
+            <td>{% for lesson in all_teacher_lessons %}
+                {% if lesson.day == "frhrefay" %}{% if lesson.time == "9" %}<a href="add-to-lesson/friday/9/{{teacher.id}}">{{lesson.title}}</a>{% endif %}{% endif %}
+                {% endfor %}</td>
+            <td>{% for lesson in all_teacher_lessons %}
+                {% if lesson.day == "frhrefay" %}{% if lesson.time == "10" %}<a href="add-to-lesson/friday/10/{{teacher.id}}">{{lesson.title}}</a>{% endif %}{% endif %}
+                {% endfor %}</td>
+            <td>{% for lesson in all_teacher_lessons %}
+                {% if lesson.day == "frhrefay" %}{% if lesson.time == "11" %}<a href="add-to-lesson/friday/11/{{teacher.id}}">{{lesson.title}}</a>{% endif %}{% endif %}
+                {% endfor %}</td>
+            <td>{% for lesson in all_teacher_lessons %}
+                {% if lesson.day == "frhrefay" %}{% if lesson.time == "12" %}<a href="add-to-lesson/friday/12/{{teacher.id}}">{{lesson.title}}</a>{% endif %}{% endif %}
+                {% endfor %}</td>
+            <td>{% for lesson in all_teacher_lessons %}
+                {% if lesson.day == "frhrefay" %}{% if lesson.time == "1" %}<a href="add-to-lesson/friday/1/{{teacher.id}}">{{lesson.title}}</a>{% endif %}{% endif %}
+                {% endfor %}</td>
+        </tr>
+        <tr>
+            <td><a href="#">Saturday</a></td>
+            <td>{% for lesson in all_teacher_lessons %}
+                {% if lesson.day == "saturday" %}{% if lesson.time == "8" %}<a href="add-to-lesson/saturday/8/{{teacher.id}}">{{lesson.title}}</a>{% endif %}{% endif %}
+                {% endfor %}</td>
+            <td>{% for lesson in all_teacher_lessons %}
+                {% if lesson.day == "saturday" %}{% if lesson.time == "9" %}<a href="add-to-lesson/saturday/9/{{teacher.id}}">{{lesson.title}}</a>{% endif %}{% endif %}
+                {% endfor %}</td>
+            <td>{% for lesson in all_teacher_lessons %}
+                {% if lesson.day == "saturday" %}{% if lesson.time == "10" %}<a href="add-to-lesson/saturday/10/{{teacher.id}}">{{lesson.title}}</a>{% endif %}{% endif %}
+                {% endfor %}</td>
+            <td>{% for lesson in all_teacher_lessons %}
+                {% if lesson.day == "saturday" %}{% if lesson.time == "11" %}<a href="add-to-lesson/saturday/11/{{teacher.id}}">{{lesson.title}}</a>{% endif %}{% endif %}
+                {% endfor %}</td>
+            <td>{% for lesson in all_teacher_lessons %}
+                {% if lesson.day == "saturday" %}{% if lesson.time == "12" %}<a href="add-to-lesson/saturday/12/{{teacher.id}}">{{lesson.title}}</a>{% endif %}{% endif %}
+                {% endfor %}</td>
+            <td>{% for lesson in all_teacher_lessons %}
+                {% if lesson.day == "saturday" %}{% if lesson.time == "1" %}<a href="add-to-lesson/saturday/1/{{teacher.id}}">{{lesson.title}}</a>{% endif %}{% endif %}
+                {% endfor %}</td>
+        </tr>
+    </tbody>
+</table>
+</div>
+</div>
+{% if messages %}
+<ul class="messages">    
+{% for message in messages %}    
+    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+{% endfor %}
+</ul>
+{% endif %}
+<footer class="card-header">2020</footer>
+{% endif %}
+
 </body>
 </html>
