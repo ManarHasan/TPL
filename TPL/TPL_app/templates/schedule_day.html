@@ -23,13 +23,35 @@
                 <a class="nav-link active" href="#">My profile</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="/logout">logout</a>
+                <a class="nav-link active" href="/logout">Logout</a>
             </li>
             
         </nav>
-    <div class='main'>
+
+    <div class='container'>
         <div class="row">
-        <div class="col-2">
+            <div class="col-3"></div>
+        <div class="col-6" style="margin-top: 50px;">
+        <table class="table">
+            <thead>
+                <tr class="table-danger">
+                <th>Lesson name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Online/On-site</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for lesson in teacher_lesson %}
+                <tr class="table-info">
+                <td>{{lesson.title}}</td>
+                <td>{{lesson.description}}</td>
+                <td>{{lesson.price}}</td>
+                <td>{{lesson.style}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
         <form action="/add_child_to_lesson/{{request.session.user_id}}/{{d}}/{{n}}/{{tid}}" method="post">
             {% csrf_token %}
         <select name="child" class="form-select">
@@ -38,20 +60,21 @@
             {% endfor %}
         </select>
         <br>
-        <input type="submit" class="btn-primary" value="Add Lesson">
+        <input type="submit" class="btn-primary" value="Add Lesson" style="margin-left: 270px;">
         </form>
         </div>
         </div>
         {% if messages %}
-        <ul class="messages">    
+        <div class="messages" style="margin-left: 480px;">    
             {% for message in messages %}    
-                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                <p {% if message.tags %} class="{{ message.tags }}"{% endif %} style="color: white; font-size: 24px;">{{ message }}</li>    
             {% endfor %}
-        </ul>
+        </div>
         {% endif %}
+        <div class="col-3"></div>
     </div>
-    <div class="footer1">
-        <footer class="card-header">Teacher lesson Privite - 2020</footer>
+    <div class="footer1" style="margin-top:300px ;">
+        <footer class="card-header">Teacher Private Lessons - 2020</footer>
     </div>
 </body>
 </html>

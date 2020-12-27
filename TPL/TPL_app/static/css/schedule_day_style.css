@@ -29,32 +29,29 @@ table tr td {
   border: 1px solid black;
 }
 
-
 body {
-  background-color:#152036 !important;
+  background-color: #152036 !important;
 }
 
 a {
   color: rgb(245 164 37) !important;
 }
 
-
-
 .btnn {
   color: #fff;
   background-color: rgb(245 164 37) !important;
   border-color: rgb(245 164 37) !important;
-  
 }
 
-.footer1{
-  
+.footer1 {
+  width: 100%;
   color: white;
-  
+  margin-top: 100px;
+  text-align: center;
 }
 
 .btn-primary {
   color: #fff;
   background-color: rgb(245 164 37) !important;
   border-color: rgb(245 164 37) !important;
-  
+}

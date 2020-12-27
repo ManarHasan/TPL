@@ -55,6 +55,9 @@ def login(request):
     if request.POST['options'] == "parent":
         email = request.POST['email']
         user = models.get_parent(email)
+        if user == 1:
+            messages.error(request, "You are not a parent!")
+            return redirect("/")
         if bcrypt.checkpw(request.POST['password'].encode(), user.password.encode()):
             if user is not None:
                 if 'user_id' not in request.session:
@@ -66,6 +69,9 @@ def login(request):
     if request.POST['options'] == "teacher":
         email = request.POST['email']
         user = models.get_teacher(email)
+        if user == 1:
+            messages.error(request, "You are not a teacher!")
+            return redirect("/")
         if bcrypt.checkpw(request.POST['password'].encode(), user.password.encode()):
             if user is not None:
                 if 'user_id' not in request.session:
@@ -86,15 +92,16 @@ def logout(request):
 
 
 def parent_profile(request, id):
-    # if ['user_id'] not in request.session:
-    #     messages.error(request, "You must be logged in to view this page")
+    if 'user_id' not in request.session:
+        messages.error(request, "You must be logged in to view this page")
+    if request.session['user_id'] != int(id) and request.session['type'] == "parent":
+        return redirect("/parent-profile/"+str(request.session['user_id']))
     parent = Parent.objects.get(id=id)
     children = parent.children.all()
     all_lessons = []
     for child in children:
         all_lessons.append(Lesson.objects.filter(child=child.id))
     context = {
-        "child": child,
         "parent": parent,
         "children": children,
         "all_lessons": all_lessons
@@ -103,10 +110,15 @@ def parent_profile(request, id):
 
 
 def teacher_profile(request, id):
+    if 'user_id' not in request.session:
+        messages.error(request, "You must be logged in to view this page")
+    if request.session['user_id'] != int(id) and request.session['type'] == "teacher":
+        return redirect("/parent-profile/"+str(request.session['user_id']))
     teacher = Teacher.objects.get(id=id)
     students = teacher.lessons.all()
     all_lessons_for_each_student = []
-    all_teacher_lessons = Lesson.objects.filter(teacher=Teacher.objects.get(id=id))
+    all_teacher_lessons = Lesson.objects.filter(
+        teacher=Teacher.objects.get(id=id))
     for lesson in all_teacher_lessons:
         if lesson.child is None:
             print(lesson.child)
@@ -141,26 +153,35 @@ def add_lesson(request, id):
 def add_child_form(request, d, n, tid):
     parent = Parent.objects.get(id=request.session['user_id'])
     children = parent.children.all()
-    context={
+    all_teacher_lessons = Lesson.objects.filter(
+        teacher=Teacher.objects.get(id=tid), time=n, day=d)
+    context = {
         'children': children,
-        "d":d,
+        "d": d,
         "n": n,
-        "tid": tid
-        }
-    return render(request, "schedule_day.html",context)
+        "tid": tid,
+        "teacher_lesson": all_teacher_lessons
+    }
+    return render(request, "schedule_day.html", context)
+
 
 def signup_to_lesson(request, id, d, n, tid):
     child = Child.objects.get(id=request.POST['child'])
     teacher = Teacher.objects.get(id=tid)
-    available= models.child_is_available(day=d, time=n, child=child)
-    if available:
+    available = models.child_is_available(day=d, time=n, child=child)
+    available_2 = models.is_lesson_available(day=d, time=n, id=tid)
+    if available and available_2:
         lesson = Lesson.objects.get(teacher=teacher, day=d, time=n)
         lesson.child = child
         lesson.save()
-    else:
-        messages.error(request,"you are not available at this time!")
+    elif not available:
+        messages.error(request, "You are not available at this time!")
+        return redirect('/teacher-profile/add-to-lesson/'+str(d)+"/"+str(n)+"/"+str(tid))
+    elif not available_2:
+        messages.error(request, "Teacher is not available at this time!")
         return redirect('/teacher-profile/add-to-lesson/'+str(d)+"/"+str(n)+"/"+str(tid))
     return redirect('/teacher-profile/'+str(tid))
+
 
 def home(request):
     context = {}
@@ -168,7 +189,8 @@ def home(request):
     print(url_parameter)
     if url_parameter:
         teachers = Teacher.objects.filter(first_name__icontains=url_parameter)
-        teacher_subject = Teacher.objects.filter(specialization__icontains=url_parameter)
+        teacher_subject = Teacher.objects.filter(
+            specialization__icontains=url_parameter)
     else:
         teachers = Teacher.objects.all()
         teacher_subject = Teacher.objects.all()
@@ -176,11 +198,11 @@ def home(request):
     context['specialization'] = teacher_subject
     if request.is_ajax():
         html = render_to_string(
-            template_name="search.html", 
+            template_name="search.html",
             context={
                 "teachers": teachers,
                 "specialization": teacher_subject
-                }
+            }
         )
 
         data_dict = {"html_from_view": html}
@@ -189,10 +211,10 @@ def home(request):
 
     return render(request, "home_page.html", context)
 
+
 def all_lessons(request):
     Lesson.objects.all()
     context = {
         'all_lessons': Lesson.objects.all()
     }
     return render(request, 'lessons.html', context)
-

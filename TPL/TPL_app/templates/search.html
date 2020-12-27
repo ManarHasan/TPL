@@ -1,7 +1,5 @@
-<div class="row">
-    <div class="col-4">
 {% if teachers %}
-    <table class="table">
+    <table class="table" style="display: inline-block; width:600px;">
         <thead>
             <th>Teacher name</th>
             <th>Specialization</th>
@@ -9,7 +7,7 @@
         <tbody>
             {% for teacher in teachers %}
             <tr>
-            <td><a href="teacher-profile/{{teacher.id}}">{{teacher.first_name}} {{teacher.last_name}}</a></td>
+            <td><a href="teacher-profile/{{teacher.id}}">{{teacher.gender}} {{teacher.first_name}} {{teacher.last_name}}</a></td>
             <td>{{teacher.specialization}}</td>
             </tr> 
             {% endfor %}
@@ -18,24 +16,22 @@
         <div>No teachers found.</div>
     </ul>
 {% endif %}
-    </div>
-    <div class="col-4 subject">
 {% if specialization %}
-    <table class="table">
+    <table class="table" style="display: inline-block; width:600px;">
         <thead>
-            <th>Teacher name</th>
             <th>Specialization</th>
+            <th>Teacher name</th>
         </thead>
         <tbody>
         {% for subject in specialization %}
         <tr>
-        <td><a href="teacher-profile/{{subject.id}}">{{subject.first_name}} {{subject.last_name}}</a></td>
         <td>{{subject.specialization}}</td>
+        <td><a href="teacher-profile/{{subject.id}}">{{subject.gender}} {{subject.first_name}} {{subject.last_name}}</a></td>
         </tr> 
         {% endfor %}
         </tbody>
+    </table>
         {% else %}
         <div>No subjects found.</div>
+        
 {% endif %}
-</div>
-</div>

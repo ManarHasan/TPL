@@ -24,7 +24,7 @@ ul {
   font-size: x-large;
   text-align: center;
 }
-h3{
+h3 {
   color: #fff;
 }
 .profile-pic {
@@ -32,7 +32,7 @@ h3{
   margin: -80px 150px;
   position: absolute !important;
   z-index: 1 !important;
-  width: 200px; 
+  width: 200px;
   height: 200px;
 }
 .empty {
@@ -75,15 +75,15 @@ main {
 }
 
 body {
-  background-color:#152036 !important;
+  background-color: #152036 !important;
 }
 
 a {
   color: rgb(245 164 37) !important;
 }
 
-.info{
-  margin:200px 0 0 20px;
+.info {
+  margin: 50px 0 0 20px;
   width: 300px;
 }
 
@@ -91,16 +91,14 @@ a {
   color: #fff;
   background-color: rgb(245 164 37) !important;
   border-color: rgb(245 164 37) !important;
-  
 }
-p{
+p {
   color: white;
   margin-top: 10px !important;
   margin-left: 380px;
   margin-bottom: 0px !important;
 }
-.footer1{
+.footer1 {
   text-align: center;
   color: white;
-  
 }

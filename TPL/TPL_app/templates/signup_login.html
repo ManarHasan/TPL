@@ -49,15 +49,15 @@
                 // Create an <input> element, set its type and name attributes
                 var input_1 = document.createElement("input");
                 input_1.type = "text";
-                input_1.class = "form-control"
+                input_1.style = "color: black"
                 input_1.name = "child_name" + i;
                 var input_2 = document.createElement("input");
                 input_2.type = "number";
-                input_2.class = "form-control"
+                input_2.style = "color: black"
                 input_2.name = "age" + i;
                 var input_3 = document.createElement("input");
                 input_3.type = "number";
-                input_3.class = "form-control"
+                input_3.style = "color: black"
                 input_3.name = "grade" + i;
                 container.appendChild(document.createElement("br"));
                 container.appendChild(input_1);
@@ -96,7 +96,7 @@
         <div class="left">
             <h4 class="left display-5">About our Website</h4>
             <p class="about">
-                Bacon ipsum dolor amet venison frankfurter ham hamburger. Tongue kevin chislic pork chuck, alcatra sausage shank t-bone tail boudin kielbasa shoulder. Shank turducken t-bone, pig pork loin shankle tenderloin swine ball tip. Short loin tongue flank, chuck shoulder capicola prosciutto pancetta shankle landjaeger cupim ball tip pork chop. Beef sirloin porchetta prosciutto. Alcatra beef ribs andouille, venison t-bone ham spare ribs pork loin porchetta short loin capicola picanha boudin.
+                Welcome to our platform TPL! This platform links teacher's to parents, whereby teachers make various private lessons, which parents can sign their kids up to. The parents sign up with entering the data of their children and then sign up their kids to any class they wish! Go ahead sign up and give it a try! If you are a teacher please join our staff! 
             </p>
             <div class="pics">
             <div class='row'>
@@ -159,23 +159,11 @@
                 <div id="container-1" style="display:none; width:308px; font:15px Verdana; border:solid 1px #CCC; padding:10px;">
                     <label>Number of children:</label>
                     <input type="number" class="form-control" id="tbnumber" name="number_of_children">
-                    <a href="#" id="filldetails" onclick="addFields()" class="btn-primary">Add Kids</a>
+                    <a href="#" id="filldetails" onclick="addFields()" class="btn-primary" style="color:white !important; text-decoration:none">Add Kids</a>
                     <div id="more-containers">
-                    <label>Child Name: </label>
-                    <input type="text" class="form-control" id="tbname" name="child_name">
-                    <label>Age:</label>
-                    <input type="number" class="form-control" id="tbEmail" name="age">
-                    <label>Gender:</label>
-                    <select class="form-control" name="gender">
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    </select>
-                    <label>grade:</label>
-                    <input type="number" class="form-control" name="grade">
                     </div>
         </div>
         <div id="container-2" style="display:none; width:308px; font:15px Verdana; border:solid 1px #CCC; padding:10px;">
-            <div>
                 <div>
                     <label>Education: </label>
                     <div><select class="form-select" name="education" id="teacher-education">
@@ -206,7 +194,11 @@
                         <option value="Music">Music</option>
                         <option value="Economics">Economics</option>
                         </select></div></div>
-            </div>
+                    <div><label>Gender</label>
+                    <div><select class="form-select" name="gender" id="teacher-gender">
+                        <option value="Mr.">Male</option>
+                        <option value="Ms.">Female</option>
+                        </select></div></div>
         </div>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>   
             </form>
@@ -224,16 +216,15 @@
             </form>
         </div>
     </div>
-    <a href="/logout">Logout</a>
-    {% if messages %}
-<ul class="messages">    
+{% if messages %}
+<div class="messages" style="margin-left: 480px;">    
     {% for message in messages %}    
-        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+        <p {% if message.tags %} class="{{ message.tags }}"{% endif %} style="color: white; font-size: 24px;">{{ message }}</li>    
     {% endfor %}
-</ul>
+</div>
 {% endif %}
 <div class="footer1">
-    <footer class="card-header">Teacher lesson Privite - 2020</footer>
+    <footer class="card-header">Teacher Private Lessons - 2020</footer>
 </div>
 </body>
 </html>

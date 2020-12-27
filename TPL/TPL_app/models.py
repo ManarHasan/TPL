@@ -13,6 +13,7 @@ class Teacher(models.Model):
     occupation = models.CharField(max_length=255)
     specialization = models.CharField(max_length=255)
     education = models.CharField(max_length=255)
+    gender = models.CharField(max_length=6, null=True)
     email = models.CharField(max_length=255, null=True)
     password = models.CharField(max_length=255, null=True)
     profile_pic = models.ImageField(upload_to='images/', null=True, blank=True)
@@ -36,7 +37,6 @@ class Child(models.Model):
     last_name = models.CharField(max_length=255)
     age = models.IntegerField()
     grade = models.IntegerField()
-    gender = models.CharField(max_length=6)
     parent = models.ForeignKey(
         Parent, related_name="children", on_delete=models.CASCADE)
     lessons = models.ManyToManyField(
@@ -48,7 +48,6 @@ class Child(models.Model):
 class Lesson(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
-    max_students = models.IntegerField()
     price = models.IntegerField()
     style = models.CharField(max_length=255, null=True)
     child = models.ForeignKey(
@@ -61,6 +60,8 @@ class Lesson(models.Model):
 
 
 def add_parent(postData, postFiles, pw_hash):
+    if len(postFiles) < 1:
+        postFiles['pic'] = "images/profile_pic.png"
     user = Parent.objects.create(
         first_name=postData['fname'], last_name=postData['lname'], occupation=postData['occupation'], email=postData['email'], password=pw_hash, profile_pic=postFiles['pic'])
     return user
@@ -69,29 +70,35 @@ def add_parent(postData, postFiles, pw_hash):
 def add_child(postData, user_id):
     for i in range(int(postData['number_of_children'])):
         child = Child.objects.create(first_name=postData[f'child_name{i}'], last_name=postData['lname'],
-                                    age=postData[f'age{i}'], gender="male", grade=postData[f'grade{i}'], parent=Parent.objects.get(id=user_id))
+                                     age=postData[f'age{i}'], grade=postData[f'grade{i}'], parent=Parent.objects.get(id=user_id))
     return child
 
 
 def add_teacher(postData, postFiles, pw_hash):
+    if len(postFiles) < 1:
+        postFiles['pic'] = "images/profile_pic.png"
     user = Teacher.objects.create(
-        first_name=postData['fname'], last_name=postData['lname'], occupation=postData['occupation'], email=postData['email'], password=pw_hash, specialization=postData['specialization'], education=postData['education'], profile_pic=postFiles['pic'])
+        first_name=postData['fname'], last_name=postData['lname'], occupation=postData['occupation'], email=postData['email'], gender=postData['gender'], password=pw_hash, specialization=postData['specialization'], education=postData['education'], profile_pic=postFiles['pic'])
     return user
 
 
 def add_lesson(postData, id):
-    lesson = Lesson.objects.create(title=postData['title'], description=postData['description'], max_students=1,
+    lesson = Lesson.objects.create(title=postData['title'], description=postData['description'],
                                    price=postData['price'], style=postData['style'], day=postData['day'], time=postData['time'], teacher=Teacher.objects.get(id=id))
     return lesson
 
 
 def get_parent(email):
     user = Parent.objects.filter(email=email)
+    if len(user) < 1:
+        return 1
     return user[0]
 
 
 def get_teacher(email):
     user = Teacher.objects.filter(email=email)
+    if len(user) < 1:
+        return 1
     return user[0]
 
 
@@ -172,14 +179,25 @@ def child_validator(postData):
 
 
 def is_available(day, time, id):
-    lessons = Lesson.objects.filter(day=day, time=time, teacher=Teacher.objects.get(id=id))
+    lessons = Lesson.objects.filter(
+        day=day, time=time, teacher=Teacher.objects.get(id=id))
     print(lessons)
     if len(lessons) > 0:
         return False
     return True
 
 
-def child_is_available(child,day, time):
+def is_lesson_available(day, time, id):
+    lessons = Lesson.objects.filter(
+        day=day, time=time, teacher=Teacher.objects.get(id=id))
+    print(lessons)
+    print(lessons[0].child)
+    if lessons[0].child is None:
+        return True
+    return False
+
+
+def child_is_available(child, day, time):
     lessons = Lesson.objects.filter(day=day, time=time, child=child)
     print(lessons)
     if len(lessons) > 0:
@@ -190,9 +208,9 @@ def child_is_available(child,day, time):
 def lesson_validator(postData, id):
     errors = {}
     if len(postData['title']) < 2:
-        errors['title'] = "title should have at least many characters"
+        errors['title'] = "Title should have at least many characters"
     if validate_text(postData['description'], min_length=5) == 1:
-        errors['description'] = "description  should have at least 5 characters"
+        errors['description'] = "Description  should have at least 5 characters"
     if is_available(postData['day'], postData['time'], id) == False:
         errors['time'] = "You already have a lesson at this time!"
     return errors
